@@ -11,7 +11,7 @@ import me.nikl.gamebox.input.InvitationHandler;
 import me.nikl.gamebox.input.TextInputHandler;
 import me.nikl.gamebox.listeners.GameBoxListener;
 import me.nikl.gamebox.nms.NmsUtility;
-import me.nikl.gamebox.common.bstats.bukkit.Metrics;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
