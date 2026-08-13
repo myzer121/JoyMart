@@ -302,18 +302,29 @@ public class GameSettingsEditor extends AGui {
         // property price editing impossible.
     }
 
-    /** Change a property's price or rent by a delta and persist. */
+    /** Change a property's price or rent by a delta and persist.
+     *  <p>Directly modifies the Map inside the properties list rather than
+     *  using {@code config.set("properties." + idx + ".rent", v)} because
+     *  Bukkit's {@code MemorySection.set()} does not reliably write through
+     *  to the underlying Map object inside a List — it can create a phantom
+     *  child section instead of updating the list element, making the edit
+     *  silently disappear on reload.</p>
+     */
+    @SuppressWarnings("unchecked")
     private void changeProperty(int propIdx, int delta, boolean isPrice) {
         java.util.List<?> list = game.getConfig().getList("properties");
         if (list == null || propIdx >= list.size()) return;
-        java.util.Map<?, ?> map = (java.util.Map<?, ?>) list.get(propIdx);
-        if (isPrice) {
-            int v = Math.max(0, ((Number) map.get("price")).intValue() + delta);
-            game.getConfig().set("properties." + propIdx + ".price", v);
-        } else {
-            int v = Math.max(0, ((Number) map.get("rent")).intValue() + delta);
-            game.getConfig().set("properties." + propIdx + ".rent", v);
-        }
+        Object item = list.get(propIdx);
+        if (!(item instanceof java.util.Map)) return;
+        java.util.Map<String, Object> map = (java.util.Map<String, Object>) item;
+        String key = isPrice ? "price" : "rent";
+        Object raw = map.get(key);
+        if (!(raw instanceof Number)) return;
+        int newVal = Math.max(0, ((Number) raw).intValue() + delta);
+        // Directly mutate the Map that lives inside the config's list.
+        // This guarantees the change is visible to getConfig().getList()
+        // on the next read, and to saveGameConfig() / loadSettings().
+        map.put(key, newVal);
         game.saveGameConfig();
         game.loadSettings();
         // Refresh the open GUI for all viewers
