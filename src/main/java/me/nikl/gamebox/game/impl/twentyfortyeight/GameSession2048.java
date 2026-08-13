@@ -148,6 +148,7 @@ public class GameSession2048 extends AbstractGameSession {
         score = 0;
         reached2048 = false;
         settled = false;
+        finished = false;  // MUST reset so the game is playable after restart
         spawnTile();
         spawnTile();
     }

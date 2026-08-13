@@ -100,6 +100,7 @@ public class ChessSession extends AbstractGameSession {
         capturedByBlack.clear();
         moveCount = 0;
         settled = false;
+        finished = false;  // MUST reset so AI can move after restart
         aiThinking = false;
     }
 

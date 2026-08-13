@@ -3,7 +3,7 @@ package me.nikl.gamebox.input;
 import me.nikl.gamebox.GameBox;
 import me.nikl.gamebox.GameBoxSettings;
 import me.nikl.gamebox.game.Game;
-import net.jodah.expiringmap.ExpiringMap;
+import me.nikl.gamebox.common.expiringmap.ExpiringMap;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;

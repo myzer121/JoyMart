@@ -1,7 +1,7 @@
 package me.nikl.gamebox.data;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
+import me.nikl.gamebox.common.hikari.HikariConfig;
+import me.nikl.gamebox.common.hikari.HikariDataSource;
 import me.nikl.gamebox.GameBox;
 import me.nikl.gamebox.GameBoxSettings;
 import org.bukkit.configuration.file.FileConfiguration;

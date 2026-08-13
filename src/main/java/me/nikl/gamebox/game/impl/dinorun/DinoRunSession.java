@@ -41,8 +41,11 @@ public class DinoRunSession extends AbstractGameSession {
     private static final int SLOT_SCORE = 50;
     private static final int SLOT_PAUSE = 53;
 
-    /** Jump arc: row offsets per scroll tick (0 = ground, larger = higher). */
-    private static final int[] JUMP_ARC = {0, 2, 3, 3, 2, 0};
+    /** Jump arc: row offsets per scroll tick (0 = ground, larger = higher).
+     *  First element is non-zero so the dino immediately leaves the ground
+     *  when the player clicks jump (no one-frame delay where the dino is
+     *  visually still on the ground but has already consumed a jump). */
+    private static final int[] JUMP_ARC = {2, 3, 3, 2, 0};
 
     private final GameDinoRun game;
     private final Random random = new Random();
@@ -288,6 +291,7 @@ public class DinoRunSession extends AbstractGameSession {
         currentIntervalTicks = game.getScrollIntervalTicks();
         settled = false;
         paused = false;
+        finished = false;  // MUST reset so the new task doesn't immediately cancel
         // Do NOT set started = false here. If we do, refresh() → build()
         // will call startTask(), and then we also call startTask() below,
         // creating TWO tasks that each call step() — cacti move 2 cells

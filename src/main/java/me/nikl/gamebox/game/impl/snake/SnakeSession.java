@@ -102,6 +102,7 @@ public class SnakeSession extends AbstractGameSession {
         foodEaten = 0;
         settled = false;
         paused = false;
+        finished = false;  // MUST reset so the new task doesn't immediately cancel
         currentIntervalTicks = game.getStartIntervalTicks();
         spawnFood();
     }
@@ -329,9 +330,12 @@ public class SnakeSession extends AbstractGameSession {
             task = null;
         }
         resetState();
-        started = false;
-        refresh();
+        // Do NOT set started = false here. If we do, refresh() → build()
+        // will call startTask(), and then we also call startTask() below,
+        // creating TWO tasks that each call step() — the snake moves 2 cells
+        // per tick and can skip collision detection.
         startTask();
+        refresh();
     }
 
     private void endGame() {
