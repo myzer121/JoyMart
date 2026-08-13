@@ -25,9 +25,9 @@ public class PrizePoolEditor {
 
     /** Open the prize-list page for the given prize game. */
     public static void open(GameBox plugin, Player player, PrizeGame game) {
-        // Restore inventory ONCE when entering the prize editor flow.
-        // Previously this was called in PrizeListPage.open() on every
-        // navigation, causing the same item-vanishing bug as ShopAdmin.
+        // Mark the player as being in the admin flow to prevent
+        // leaveGameBox from wiping the saved-inventory entry.
+        plugin.getPluginManager().setInAdminFlow(player.getUniqueId(), true);
         plugin.getPluginManager().tempRestoreInventory(player);
         PrizeListPage page = new PrizeListPage(plugin, game);
         page.open(player);
@@ -122,9 +122,10 @@ public class PrizePoolEditor {
             setButton(getSize() - 1, Button.action("back",
                     Utility.createItem(Material.ARROW, plugin.lang("gui.backButton"), null),
                     p -> {
-                        // Re-clear inventory since we're leaving the admin
-                        // item-interaction GUI.
+                        // Leaving the admin flow — save inventory changes,
+                        // re-clear, and clear the admin flow flag.
                         plugin.getPluginManager().reClearInventory(p);
+                        plugin.getPluginManager().setInAdminFlow(p.getUniqueId(), false);
                         ((me.nikl.gamebox.game.Game) game).getGameGui().open(p);
                     }));
         }

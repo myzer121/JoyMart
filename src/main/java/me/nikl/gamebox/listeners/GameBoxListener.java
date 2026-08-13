@@ -99,9 +99,29 @@ public class GameBoxListener implements Listener {
                 // and will be reopened by the text-input callback.
                 boolean awaitingInput = plugin.getTextInputHandler() != null
                         && plugin.getTextInputHandler().isAwaiting(player.getUniqueId());
-                if (stillOpen == null && !inGame && !awaitingInput
+                // Don't leave GameBox if the player is in the admin flow
+                // (ShopAdmin / PrizePoolEditor). Their inventory was
+                // temporarily restored and a premature leaveGameBox would
+                // wipe the saved-inventory entry, causing all items to vanish.
+                boolean inAdmin = plugin.getPluginManager().isInAdminFlow(player.getUniqueId());
+                if (stillOpen == null && !inGame && !awaitingInput && !inAdmin
                         && plugin.getPluginManager().isInGameBox(player.getUniqueId())) {
                     plugin.getPluginManager().leaveGameBox(player);
+                }
+                // If the player is in the admin flow but closed their GUI
+                // (e.g. pressed ESC) without awaiting chat input, clean up
+                // the admin state and return them to the shop GUI so they
+                // don't get stuck with no GUI and a restored inventory.
+                if (inAdmin && !awaitingInput && stillOpen == null
+                        && plugin.getPluginManager().isInGameBox(player.getUniqueId())) {
+                    plugin.getPluginManager().reClearInventory(player);
+                    plugin.getPluginManager().setInAdminFlow(player.getUniqueId(), false);
+                    Bukkit.getScheduler().runTask(plugin, () -> {
+                        if (player.isOnline()
+                                && plugin.getPluginManager().isInGameBox(player.getUniqueId())) {
+                            plugin.getGuiManager().openShop(player);
+                        }
+                    });
                 }
             }, 1L);
         }

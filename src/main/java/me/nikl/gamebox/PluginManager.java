@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -48,6 +49,16 @@ public class PluginManager {
     private InvitationHandler invitationHandler;
     private int autoSaveTaskId = -1;
     private me.nikl.gamebox.scoreboard.ScoreboardManager scoreboardManager;
+
+    /**
+     * Players currently in the ShopAdmin (or PrizePoolEditor) flow. While this
+     * flag is set, the InventoryCloseEvent handler must NOT call
+     * leaveGameBox(), because the admin GUIs temporarily restore the
+     * player's real inventory and closing/reopening during navigation
+     * (e.g. chat input for category names) would trigger a premature
+     * leaveGameBox → restoreInventory that wipes the saved-inventory entry.
+     */
+    private final Set<UUID> inAdminFlow = new java.util.concurrent.ConcurrentHashMap().newKeySet();
 
     public PluginManager(GameBox plugin) {
         this.plugin = plugin;
@@ -249,11 +260,31 @@ public class PluginManager {
     /**
      * Re-clear a player's inventory after {@link #tempRestoreInventory} when
      * they leave the admin GUI and return to a normal GameBox GUI.
+     *
+     * <p>Before clearing, the current inventory contents are saved back to
+     * {@link #savedInventories} so that any changes the player made (picking
+     * up items, moving things around) are preserved. When the player
+     * eventually leaves GameBox, {@link #restoreInventory} will restore
+     * the updated inventory rather than the stale original.</p>
      */
     public void reClearInventory(Player player) {
-        if (savedInventories.containsKey(player.getUniqueId())) {
+        UUID uuid = player.getUniqueId();
+        if (savedInventories.containsKey(uuid)) {
+            // Save current inventory (with any admin-flow changes) back
+            // so restoreInventory on GameBox exit gets the latest state.
+            savedInventories.put(uuid, player.getInventory().getContents().clone());
             player.getInventory().clear();
         }
+    }
+
+    /** Mark a player as being inside the admin flow (ShopAdmin / PrizePoolEditor). */
+    public void setInAdminFlow(UUID uuid, boolean value) {
+        if (value) inAdminFlow.add(uuid);
+        else inAdminFlow.remove(uuid);
+    }
+
+    public boolean isInAdminFlow(UUID uuid) {
+        return inAdminFlow.contains(uuid);
     }
 
     public boolean isInGameBox(UUID uuid) {

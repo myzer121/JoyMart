@@ -76,10 +76,12 @@ public class ShopAdmin extends AGui {
         setButton(getSize() - 1, Button.action("back",
                 Utility.createItem(Material.ARROW, plugin.lang("gui.backButton"), null),
                 p -> {
-                    // Leaving the admin flow — re-clear the temporarily
-                    // restored inventory so the player returns to the
-                    // normal GameBox (cleared-inventory) state.
+                    // Leaving the admin flow — save any inventory changes,
+                    // re-clear the temporarily restored inventory, and clear
+                    // the admin flow flag so the player returns to normal
+                    // GameBox (cleared-inventory) state.
                     plugin.getPluginManager().reClearInventory(p);
+                    plugin.getPluginManager().setInAdminFlow(p.getUniqueId(), false);
                     plugin.getGuiManager().openShop(p);
                 }));
     }

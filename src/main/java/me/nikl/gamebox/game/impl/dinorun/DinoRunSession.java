@@ -288,9 +288,15 @@ public class DinoRunSession extends AbstractGameSession {
         currentIntervalTicks = game.getScrollIntervalTicks();
         settled = false;
         paused = false;
-        started = false;
-        refresh();
+        // Do NOT set started = false here. If we do, refresh() → build()
+        // will call startTask(), and then we also call startTask() below,
+        // creating TWO tasks that each call step() — cacti move 2 cells
+        // per tick and can skip the dino's column entirely, making
+        // collision detection fail.
+        // Instead, just start one fresh task directly. started is still
+        // true so build() won't create a duplicate.
         startTask();
+        refresh();
     }
 
     private void endGame() {
