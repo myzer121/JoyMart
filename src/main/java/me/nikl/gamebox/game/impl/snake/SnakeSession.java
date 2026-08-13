@@ -246,7 +246,9 @@ public class SnakeSession extends AbstractGameSession {
             try { task.cancel(); } catch (IllegalStateException ignored) {}
             task = null;
         }
-        started = false;
+        // Do NOT set started = false here — same fix as DinoRun.
+        // Setting it causes build() (via refresh()) to create a duplicate
+        // scheduler task, resulting in two step() loops running at once.
         startTask();
     }
 

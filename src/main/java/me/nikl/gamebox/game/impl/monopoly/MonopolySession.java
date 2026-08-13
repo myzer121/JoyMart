@@ -556,6 +556,7 @@ public class MonopolySession extends AbstractGameSession {
     }
 
     private void rollAndMove() {
+        if (finished) return;  // Session ended (player quit during AI turn)
         lastDice = random.nextInt(6) + 1;
         int oldPos = positions[currentPlayer];
 
@@ -829,13 +830,35 @@ public class MonopolySession extends AbstractGameSession {
                         new String[]{"%player%", winName}));
                 // Settle bets (3-player mode only) — winners get 2x payout.
                 settleBets(lastActive);
-                // Settle rewards
+                // Settle rewards — call onGameWonMulti only ONCE to avoid
+                // duplicating winner rewards (tokens, money, high score,
+                // effects) when there are multiple non-AI losers.
                 UUID winnerId = playerIds[lastActive];
+                boolean firstNonAiLoser = true;
                 for (int i = 0; i < numPlayers; i++) {
                     if (i == lastActive) continue;
                     UUID loserId = playerIds[i];
                     if (!isAi[i]) {
-                        game.onGameWonMulti(winnerId, loserId, false);
+                        if (firstNonAiLoser) {
+                            game.onGameWonMulti(winnerId, loserId, false);
+                            firstNonAiLoser = false;
+                        } else {
+                            // Additional losers: give only loser-side rewards
+                            // (winner rewards already given with first call).
+                            Player loserPlayer = Bukkit.getPlayer(loserId);
+                            me.nikl.gamebox.data.GBPlayer gbLoser =
+                                    plugin.getPluginManager().getPlayer(loserId);
+                            if (gbLoser != null) {
+                                gbLoser.addTokens(game.getMultiRewards().getTokensLoser());
+                            }
+                            if (loserPlayer != null) {
+                                plugin.getPluginManager().playLoseEffects(loserPlayer);
+                                plugin.getPluginManager().updateGameScoreboard(
+                                        loserPlayer, game.getGameId(), 0, false);
+                                plugin.getPluginManager().clearGameScoreboardLater(
+                                        loserPlayer, 100L);
+                            }
+                        }
                     }
                 }
             }

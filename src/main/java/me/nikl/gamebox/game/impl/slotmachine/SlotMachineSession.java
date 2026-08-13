@@ -130,8 +130,9 @@ public class SlotMachineSession extends me.nikl.gamebox.game.AbstractGameSession
         int raw = event.getRawSlot();
         if (raw < 0 || raw >= getInventorySize()) return;
 
-        if (raw == 26) {
-            // Cash out
+        if (raw == 26 && !spinning) {
+            // Cash out (disabled during spin to prevent losing the spin
+            // cost without getting the prize resolved)
             cashOut(player);
             return;
         }

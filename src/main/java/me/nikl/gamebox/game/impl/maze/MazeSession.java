@@ -156,6 +156,8 @@ public class MazeSession extends me.nikl.gamebox.game.AbstractGameSession {
 
         // Close button (bottom-right)
         if (raw == getInventorySize() - 1) {
+            settled = true;
+            ((MazeManager) game.getGameManager()).endSession(this);
             end();
             return;
         }
