@@ -151,22 +151,22 @@ public class MonopolySession extends AbstractGameSession {
         switch (type) {
             case MonopolyBoard.TYPE_GO:
                 return loreItem(Material.EMERALD_BLOCK, game.lang("go"),
-                        buildLore("&a经过获得 &f" + ((GameMonopoly) game).getPassGoBonus() + "元", space));
+                        buildLore(game.lang("spaceLore.passGo").replace("%amount%", String.valueOf(((GameMonopoly) game).getPassGoBonus())), space));
             case MonopolyBoard.TYPE_JAIL:
                 return loreItem(Material.IRON_BARS, game.lang("jail"),
-                        buildLore("&7仅仅是路过", space));
+                        buildLore(game.lang("spaceLore.justVisiting"), space));
             case MonopolyBoard.TYPE_FREE_PARKING:
                 return loreItem(Material.CYAN_CONCRETE, game.lang("freeParking"),
-                        buildLore("&7无事发生", space));
+                        buildLore(game.lang("spaceLore.nothing"), space));
             case MonopolyBoard.TYPE_GO_TO_JAIL:
                 return loreItem(Material.REDSTONE_BLOCK, game.lang("goToJail"),
-                        buildLore("&c直接送进监狱!", space));
+                        buildLore(game.lang("spaceLore.goToJail"), space));
             case MonopolyBoard.TYPE_CHANCE:
                 return loreItem(Material.PURPLE_SHULKER_BOX, game.lang("chance"),
-                        buildLore("&7抽取机会卡", space));
+                        buildLore(game.lang("spaceLore.drawCard"), space));
             case MonopolyBoard.TYPE_CHEST:
                 return loreItem(Material.CYAN_SHULKER_BOX, game.lang("communityChest"),
-                        buildLore("&7抽取命运卡", space));
+                        buildLore(game.lang("spaceLore.drawCard"), space));
             default:
                 return propertyItem(space, props);
         }
@@ -258,7 +258,7 @@ public class MonopolySession extends AbstractGameSession {
                     Utility.createItem(Material.WRITABLE_BOOK, "&e" + lastMessage, null));
         } else {
             inventory.setItem(SLOT_MESSAGE,
-                    Utility.createItem(Material.WRITABLE_BOOK, "&e大富翁", null));
+                    Utility.createItem(Material.WRITABLE_BOOK, game.lang("defaultTitle"), null));
         }
 
         // Betting area (3-player mode only, while betting is open)
@@ -268,14 +268,14 @@ public class MonopolySession extends AbstractGameSession {
         if (plugin.getMusicPlayer() != null) {
             boolean playing = plugin.getMusicPlayer().isPlaying(playerForRender);
             Material musicMat = playing ? Material.REDSTONE_BLOCK : Material.EMERALD_BLOCK;
-            String musicName = playing ? "&c暂停音乐" : "&a播放音乐";
+            String musicName = playing ? game.lang("musicPause") : game.lang("musicPlay");
             NbsSong cur = plugin.getMusicPlayer().getCurrentSong(playerForRender);
             List<String> musicLore = new ArrayList<>();
             if (cur != null) {
-                musicLore.add("&7当前: &f" + cur.name);
+                musicLore.add(game.lang("musicCurrent").replace("%name%", cur.name));
             }
-            musicLore.add("&7点击切换播放/暂停");
-            musicLore.add("&7右键: 下一首");
+            musicLore.add(game.lang("musicToggle"));
+            musicLore.add(game.lang("musicNext"));
             inventory.setItem(SLOT_MUSIC,
                     Utility.createItem(musicMat, musicName, musicLore));
         }
@@ -308,23 +308,23 @@ public class MonopolySession extends AbstractGameSession {
         for (int i = 0; i < 3; i++) {
             List<String> lore = new ArrayList<>();
             if (bettingOpen) {
-                lore.add("&7左键: &a+50 押注此人");
-                lore.add("&7Shift+左键: &a+500");
-                lore.add("&7右键: &c取消押注");
+                lore.add(game.lang("betLeftClick"));
+                lore.add(game.lang("betShiftClick"));
+                lore.add(game.lang("betRightClick"));
             }
             // Show bets placed on this player
             int totalOnMe = 0;
             for (int b = 0; b < 3; b++) {
                 if (betTarget[b] == i) totalOnMe += betAmount[b];
             }
-            if (totalOnMe > 0) lore.add("&e总押注: &f" + totalOnMe);
+            if (totalOnMe > 0) lore.add(game.lang("betTotalOn").replace("%amount%", String.valueOf(totalOnMe)));
             // Show which player this bettor has chosen
             for (int b = 0; b < 3; b++) {
                 if (betTarget[b] == i && betAmount[b] > 0) {
-                    lore.add(COLORS[b] + playerName(playerIds[b]) + " &7押 &f" + betAmount[b]);
+                    lore.add(COLORS[b] + playerName(playerIds[b]) + " " + game.lang("betPlacedBy").replace("%amount%", String.valueOf(betAmount[b])));
                 }
             }
-            String label = (bettingOpen ? "&a押 " : "&7") + coloredName(i);
+            String label = (bettingOpen ? game.lang("betPrefix") : "&7") + coloredName(i);
             inventory.setItem(betSlots[i], Utility.createItem(betMats[i], label, lore));
         }
 
@@ -333,15 +333,15 @@ public class MonopolySession extends AbstractGameSession {
         for (int b = 0; b < 3; b++) pot += betAmount[b];
         List<String> infoLore = new ArrayList<>();
         if (bettingOpen) {
-            infoLore.add("&a押注阶段 (首次掷骰前)");
-            infoLore.add("&7押对赢家: &f2倍返还");
-            infoLore.add("&7押错: &c损失押注");
+            infoLore.add(game.lang("betPhaseOpen"));
+            infoLore.add(game.lang("betCorrect"));
+            infoLore.add(game.lang("betWrong"));
         } else {
-            infoLore.add("&7押注已关闭");
+            infoLore.add(game.lang("betClosed"));
         }
-        infoLore.add("&6奖池: &f" + pot);
+        infoLore.add(game.lang("betPot").replace("%amount%", String.valueOf(pot)));
         inventory.setItem(SLOT_BET_INFO,
-                Utility.createItem(Material.GOLD_BLOCK, "&e&l押注", infoLore));
+                Utility.createItem(Material.GOLD_BLOCK, game.lang("betTitle"), infoLore));
     }
 
     /** Handle a click in the betting area. */
@@ -358,7 +358,7 @@ public class MonopolySession extends AbstractGameSession {
             // Cancel / refund
             if (betAmount[bettor] > 0) {
                 balances[bettor] += betAmount[bettor];
-                msg(Utility.replace("&e%player% &7取消了 &f%amount% &7的押注",
+                msg(Utility.replace(game.lang("betCancelled"),
                         new String[]{"%player%", coloredName(bettor)},
                         new String[]{"%amount%", String.valueOf(betAmount[bettor])}));
                 betAmount[bettor] = 0;
@@ -367,13 +367,13 @@ public class MonopolySession extends AbstractGameSession {
         } else {
             int amt = shift ? 500 : 50;
             if (balances[bettor] < amt) {
-                player.sendMessage(Utility.color(plugin.lang("prefix") + "&c余额不足以下注"));
+                player.sendMessage(Utility.color(plugin.lang("prefix") + game.lang("betInsufficient")));
                 return;
             }
             balances[bettor] -= amt;
             betAmount[bettor] += amt;
             betTarget[bettor] = targetIdx;
-            msg(Utility.replace("&e%player% &7押注 &f%amount% &7于 &f%target%",
+            msg(Utility.replace(game.lang("betPlaced"),
                     new String[]{"%player%", coloredName(bettor)},
                     new String[]{"%amount%", String.valueOf(amt)},
                     new String[]{"%target%", coloredName(targetIdx)}));
@@ -389,11 +389,11 @@ public class MonopolySession extends AbstractGameSession {
             if (betTarget[b] == winnerIdx) {
                 // Winner: refund bet + equal winnings (2x total)
                 balances[b] += betAmount[b] * 2;
-                msg(Utility.replace("&e%player% &a押中赢家! 获得 &f%amount%",
+                msg(Utility.replace(game.lang("betWon"),
                         new String[]{"%player%", coloredName(b)},
                         new String[]{"%amount%", String.valueOf(betAmount[b] * 2)}));
             } else {
-                msg(Utility.replace("&e%player% &c押注失败, 损失 &f%amount%",
+                msg(Utility.replace(game.lang("betLost"),
                         new String[]{"%player%", coloredName(b)},
                         new String[]{"%amount%", String.valueOf(betAmount[b])}));
             }
@@ -429,9 +429,9 @@ public class MonopolySession extends AbstractGameSession {
         lore.add(Utility.replace(game.lang("properties"),
                 new String[]{"%count%", String.valueOf(propCount)}));
         if (bankrupt[playerIdx]) lore.add(game.lang("bankruptStatus"));
-        if (jailTurns[playerIdx] > 0) lore.add("&7在监狱中 (" + jailTurns[playerIdx] + "回合)");
+        if (jailTurns[playerIdx] > 0) lore.add(game.lang("jailStatus").replace("%turns%", String.valueOf(jailTurns[playerIdx])));
         if (playerIdx == currentPlayer && phase != PHASE_GAME_OVER) {
-            lore.add("&e⟵ 当前回合");
+            lore.add(game.lang("currentTurn"));
         }
 
         // Use player skull for real players, skeleton skull for AI
@@ -464,9 +464,9 @@ public class MonopolySession extends AbstractGameSession {
             case 6: mat = Material.RED_CONCRETE; break;
             default: mat = Material.BARRIER; break;
         }
-        String name = lastDice > 0 ? "&6&l骰子: &f" + lastDice : "&6&l掷骰子";
+        String name = lastDice > 0 ? game.lang("diceResult").replace("%value%", String.valueOf(lastDice)) : game.lang("diceRoll");
         return Utility.createItem(mat, name,
-                lastDice > 0 ? Utility.list("&7上次点数: " + lastDice) : null);
+                lastDice > 0 ? Utility.list(game.lang("diceLastRoll").replace("%value%", String.valueOf(lastDice))) : null);
     }
 
     // ---- Click handling ----
@@ -516,7 +516,7 @@ public class MonopolySession extends AbstractGameSession {
         if (slot == SLOT_ROLL_BTN && phase == PHASE_ROLL && bettingOpen) {
             bettingOpen = false;
             if (numPlayers == 3 && !vsAi) {
-                msg("&7押注阶段结束，游戏正式开始!");
+                msg(game.lang("betPhaseEnd"));
             }
         }
 

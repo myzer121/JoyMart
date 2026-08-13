@@ -54,7 +54,7 @@ public class ShopQuantityGui extends AGui {
     public ShopQuantityGui(GameBox plugin, Shop shop,
                            String categoryKey, String itemKey,
                            String itemDisplayName, Material material, int perUnitCost) {
-        super(plugin, Utility.color("&8&l购买数量 - " + itemDisplayName), 27);
+        super(plugin, Utility.color(plugin.lang("gui.shopQtyTitle").replace("%item%", itemDisplayName)), 27);
         this.shop = shop;
         this.categoryKey = categoryKey;
         this.itemKey = itemKey;
@@ -70,7 +70,7 @@ public class ShopQuantityGui extends AGui {
         ConfigurationSection item = plugin.getShopConfig()
                 .getConfigurationSection("shop.categories." + categoryKey + ".items." + itemKey);
         if (item == null) {
-            setButton(13, Button.display(Utility.createItem(Material.BARRIER, "&c物品不存在", null)));
+            setButton(13, Button.display(Utility.createItem(Material.BARRIER, plugin.lang("gui.shopQtyItemNotFound"), null)));
             return;
         }
 
@@ -87,9 +87,9 @@ public class ShopQuantityGui extends AGui {
         Material mat = Utility.matchMaterial(item.getString("material", "PAPER"), Material.PAPER);
         List<String> previewLore = new ArrayList<>(item.getStringList("lore"));
         previewLore.add("");
-        previewLore.add("&7单价: &f" + perUnitCost + " 代币");
-        previewLore.add("&7当前数量: &f" + qty);
-        previewLore.add("&7总价: &f" + (perUnitCost * qty) + " 代币");
+        previewLore.add(plugin.lang("gui.shopQtyUnitPrice").replace("%cost%", String.valueOf(perUnitCost)));
+        previewLore.add(plugin.lang("gui.shopQtyCurrentQty").replace("%qty%", String.valueOf(qty)));
+        previewLore.add(plugin.lang("gui.shopQtyTotalPrice").replace("%cost%", String.valueOf(perUnitCost * qty)));
         ItemStack preview = Utility.createItem(mat, item.getString("name", itemKey), previewLore, qty);
         setButton(SLOT_PREVIEW, Button.display(preview));
 
@@ -107,14 +107,14 @@ public class ShopQuantityGui extends AGui {
         int balance = gb != null ? gb.getTokens() : 0;
         int totalCost = perUnitCost * qty;
         List<String> qtyLore = new ArrayList<>();
-        qtyLore.add("&7数量: &f" + qty + " &7/ &f" + maxStackSize);
-        qtyLore.add("&7总价: &f" + totalCost + " 代币");
-        qtyLore.add("&7余额: &f" + balance + " 代币");
+        qtyLore.add(plugin.lang("gui.shopQtyQtyLabel").replace("%qty%", String.valueOf(qty)).replace("%max%", String.valueOf(maxStackSize)));
+        qtyLore.add(plugin.lang("gui.shopQtyTotalCost").replace("%cost%", String.valueOf(totalCost)));
+        qtyLore.add(plugin.lang("gui.shopQtyBalance").replace("%balance%", String.valueOf(balance)));
         if (totalCost > balance) {
-            qtyLore.add("&c代币不足!");
+            qtyLore.add(plugin.lang("gui.shopQtyInsufficientTokens"));
         }
         setButton(SLOT_QTY, Button.display(
-                Utility.createItem(Material.GOLD_BLOCK, "&e&l数量: " + qty, qtyLore)));
+                Utility.createItem(Material.GOLD_BLOCK, plugin.lang("gui.shopQtyQtyDisplay").replace("%qty%", String.valueOf(qty)), qtyLore)));
         // +1
         setButton(SLOT_P1, Button.action("p1",
                 Utility.createItem(Material.LIME_STAINED_GLASS_PANE, "&a+1", null),
@@ -127,7 +127,7 @@ public class ShopQuantityGui extends AGui {
         int maxAffordable = perUnitCost > 0 ? (balance / perUnitCost) : maxStackSize;
         int maxBuy = Math.min(maxStackSize, Math.max(1, maxAffordable));
         setButton(SLOT_MAX, Button.action("max",
-                Utility.createItem(Material.DIAMOND_BLOCK, "&b最大", Utility.list("&7设为 &f" + maxBuy)),
+                Utility.createItem(Material.DIAMOND_BLOCK, plugin.lang("gui.shopQtyMax"), Utility.list(plugin.lang("gui.shopQtyMaxLore").replace("%max%", String.valueOf(maxBuy)))),
                 p -> { playerQty.put(p.getUniqueId(), maxBuy); build(p); }));
 
         // --- Bottom row ---
@@ -141,20 +141,20 @@ public class ShopQuantityGui extends AGui {
 
         // Total cost display
         setButton(SLOT_TOTAL, Button.display(Utility.createItem(Material.EMERALD,
-                "&a&l总价", Utility.list(
-                        "&7数量: &f" + qty,
-                        "&7单价: &f" + perUnitCost,
-                        "&6总价: &f" + totalCost + " 代币",
-                        "&7余额: &f" + balance + " 代币"))));
+                plugin.lang("gui.shopQtyTotalLabel"), Utility.list(
+                        plugin.lang("gui.shopQtyCurrentQty").replace("%qty%", String.valueOf(qty)),
+                        plugin.lang("gui.shopQtyUnitPrice").replace("%cost%", String.valueOf(perUnitCost)),
+                        plugin.lang("gui.shopQtyTotalCost").replace("%cost%", String.valueOf(totalCost)),
+                        plugin.lang("gui.shopQtyBalance").replace("%balance%", String.valueOf(balance))))));
 
         // Confirm
         boolean canAfford = totalCost <= balance && qty > 0;
         Material confirmMat = canAfford ? Material.EMERALD_BLOCK : Material.REDSTONE_BLOCK;
-        String confirmName = canAfford ? "&a&l确认购买" : "&c&l代币不足";
+        String confirmName = canAfford ? plugin.lang("gui.shopQtyConfirmBuy") : plugin.lang("gui.shopQtyInsufficientBtn");
         List<String> confirmLore = new ArrayList<>();
-        confirmLore.add("&7购买 &f" + qty + " &7个");
-        confirmLore.add("&7花费 &f" + totalCost + " &7代币");
-        if (canAfford) confirmLore.add("&a点击确认，物品将送至收货箱");
+        confirmLore.add(plugin.lang("gui.shopQtyConfirmLore1").replace("%qty%", String.valueOf(qty)));
+        confirmLore.add(plugin.lang("gui.shopQtyConfirmLore2").replace("%cost%", String.valueOf(totalCost)));
+        if (canAfford) confirmLore.add(plugin.lang("gui.shopQtyConfirmLore3"));
         setButton(SLOT_CONFIRM, Button.action("confirm",
                 Utility.createItem(confirmMat, confirmName, confirmLore),
                 p -> confirm(p, qty)));

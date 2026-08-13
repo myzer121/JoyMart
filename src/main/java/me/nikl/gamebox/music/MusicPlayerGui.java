@@ -43,7 +43,7 @@ public class MusicPlayerGui extends AGui {
     private static final int SONGS_PER_PAGE = 13;
 
     public MusicPlayerGui(GameBox plugin, MusicPlayer player) {
-        super(plugin, Utility.color("&8&l音乐播放器"), 54);
+        super(plugin, Utility.color(plugin.lang("gui.musicTitle")), 54);
         this.player = player;
     }
 
@@ -59,27 +59,27 @@ public class MusicPlayerGui extends AGui {
 
         // Title
         setButton(4, Button.display(Utility.createItem(Material.NOTE_BLOCK,
-                "&6&l音乐播放器",
-                Utility.list("&7共 &f" + player.getSongCount() + " &7首歌曲",
-                        "&7点击歌曲播放",
-                        "&7NBS 乐谱 → 原生音符盒音效"))));
+                plugin.lang("gui.musicPlayer"),
+                Utility.list(plugin.lang("gui.musicSongCount").replace("%count%", String.valueOf(player.getSongCount())),
+                        plugin.lang("gui.musicClickToPlay"),
+                        plugin.lang("gui.musicNbsHint")))));
 
         // ---- Control buttons (row 2) ----
         // Previous song (slot 19)
         setButton(19, Button.action("prev",
-                Utility.createItem(Material.ARROW, "&a&l上一首",
-                        Utility.list("&7点击播放上一首歌曲")),
+                Utility.createItem(Material.ARROW, plugin.lang("gui.musicPrev"),
+                        Utility.list(plugin.lang("gui.musicPrevLore"))),
                 p -> { player.playPrev(p); build(p); }));
 
         // Pause/Play (slot 22)
         NbsSong current = player.getCurrentSong(viewer);
         Material pauseMat = player.isPlaying(viewer) ? Material.REDSTONE_BLOCK : Material.EMERALD_BLOCK;
-        String pauseName = player.isPlaying(viewer) ? "&c&l暂停" : "&a&l播放";
+        String pauseName = player.isPlaying(viewer) ? plugin.lang("gui.musicPause") : plugin.lang("gui.musicPlay");
         List<String> pauseLore = new ArrayList<>();
         if (current != null) {
-            pauseLore.add("&7当前: &f" + current.name);
+            pauseLore.add(plugin.lang("gui.musicCurrent").replace("%name%", current.name));
         } else {
-            pauseLore.add("&7点击随机播放");
+            pauseLore.add(plugin.lang("gui.musicClickRandom"));
         }
         setButton(22, Button.action("pause",
                 Utility.createItem(pauseMat, pauseName, pauseLore),
@@ -87,24 +87,24 @@ public class MusicPlayerGui extends AGui {
 
         // Next song (slot 25)
         setButton(25, Button.action("next",
-                Utility.createItem(Material.ARROW, "&a&l下一首",
-                        Utility.list("&7点击播放下一首歌曲")),
+                Utility.createItem(Material.ARROW, plugin.lang("gui.musicNext"),
+                        Utility.list(plugin.lang("gui.musicNextLore"))),
                 p -> { player.playNext(p); build(p); }));
 
         // ---- Now playing info (slot 40) ----
         if (current != null) {
             List<String> nowLore = new ArrayList<>();
-            nowLore.add(player.isPlaying(viewer) ? "&a▶ 播放中" : "&c⏸ 已暂停");
+            nowLore.add(player.isPlaying(viewer) ? plugin.lang("gui.musicNowPlaying") : plugin.lang("gui.musicPaused"));
             if (current.author != null && !current.author.isEmpty()) {
-                nowLore.add("&7作者: &f" + current.author);
+                nowLore.add(plugin.lang("gui.musicAuthor").replace("%author%", current.author));
             }
-            nowLore.add("&7长度: &f" + current.lengthTicks + " &7ticks");
-            nowLore.add("&7节奏: &f" + (current.tempo / 100.0) + " &7tps");
+            nowLore.add(plugin.lang("gui.musicLength").replace("%length%", String.valueOf(current.lengthTicks)));
+            nowLore.add(plugin.lang("gui.musicTempo").replace("%tempo%", String.valueOf(current.tempo / 100.0)));
             setButton(40, Button.display(Utility.createItem(Material.MUSIC_DISC_CAT,
-                    "&e&l正在播放: &f" + current.name, nowLore)));
+                    plugin.lang("gui.musicNowPlayingDisplay").replace("%name%", current.name), nowLore)));
         } else {
             setButton(40, Button.display(Utility.createItem(Material.MUSIC_DISC_CAT,
-                    "&e&l未播放", Utility.list("&7点击下方歌曲开始播放"))));
+                    plugin.lang("gui.musicNotPlaying"), Utility.list(plugin.lang("gui.musicNotPlayingLore")))));
         }
 
         // ---- Song list with pagination (rows 4-5: slots 28-34, 37-43) ----
@@ -139,14 +139,14 @@ public class MusicPlayerGui extends AGui {
                     : Material.MUSIC_DISC_CHIRP;
             List<String> lore = new ArrayList<>();
             if (song.author != null && !song.author.isEmpty()) {
-                lore.add("&7作者: &f" + song.author);
+                lore.add(plugin.lang("gui.musicAuthor").replace("%author%", song.author));
             }
-            lore.add("&7长度: &f" + song.lengthTicks + " &7ticks");
-            lore.add("&7节奏: &f" + (song.tempo / 100.0) + " &7tps");
+            lore.add(plugin.lang("gui.musicLength").replace("%length%", String.valueOf(song.lengthTicks)));
+            lore.add(plugin.lang("gui.musicTempo").replace("%tempo%", String.valueOf(song.tempo / 100.0)));
             if (isCurrent) {
-                lore.add(player.isPlaying(viewer) ? "&a▶ 正在播放" : "&c⏸ 已暂停");
+                lore.add(player.isPlaying(viewer) ? plugin.lang("gui.musicNowPlayingLabel") : plugin.lang("gui.musicPaused"));
             } else {
-                lore.add("&a点击播放");
+                lore.add(plugin.lang("gui.musicClickToPlaySong"));
             }
             final int songIdx = i;
             setButton(slot, Button.action("song_" + i,
@@ -159,8 +159,8 @@ public class MusicPlayerGui extends AGui {
         // Previous page (slot 45)
         if (page > 0) {
             setButton(45, Button.action("prevpage",
-                    Utility.createItem(Material.ARROW, "&a&l上一页",
-                            Utility.list("&7查看之前的歌曲")),
+                    Utility.createItem(Material.ARROW, plugin.lang("gui.musicPrevPage"),
+                            Utility.list(plugin.lang("gui.musicPrevPageLore"))),
                     p -> {
                         viewerPage.put(p.getUniqueId(), page - 1);
                         build(p);
@@ -168,13 +168,13 @@ public class MusicPlayerGui extends AGui {
         }
         // Page indicator (slot 49)
         setButton(49, Button.display(Utility.createItem(Material.BOOK,
-                "&e&l第 &f" + (page + 1) + " &e/ &f" + totalPages + " &e页",
-                Utility.list("&7共 &f" + totalSongs + " &7首歌曲"))));
+                plugin.lang("gui.musicPageInfo").replace("%cur%", String.valueOf(page + 1)).replace("%total%", String.valueOf(totalPages)),
+                Utility.list(plugin.lang("gui.musicPageInfoLore").replace("%count%", String.valueOf(totalSongs))))));
         // Next page (slot 53)
         if (page + 1 < totalPages) {
             setButton(53, Button.action("nextpage",
-                    Utility.createItem(Material.ARROW, "&a&l下一页",
-                            Utility.list("&7查看更多歌曲")),
+                    Utility.createItem(Material.ARROW, plugin.lang("gui.musicNextPage"),
+                            Utility.list(plugin.lang("gui.musicNextPageLore"))),
                     p -> {
                         viewerPage.put(p.getUniqueId(), page + 1);
                         build(p);

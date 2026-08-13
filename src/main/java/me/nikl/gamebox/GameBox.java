@@ -344,13 +344,23 @@ public class GameBox extends JavaPlugin {
         }
     }
 
-    /** Convenience for translating a language key. */
+    /** Convenience for translating a language key. Uses active language context. */
     public String lang(String path) {
         return languageManager.get(path);
+    }
+
+    /** Convenience for translating a language key for a specific player. */
+    public String lang(org.bukkit.entity.Player player, String path) {
+        return languageManager.get(player, path);
     }
 
     /** Convenience returning a prefixed language message. */
     public String langPrefixed(String path) {
         return languageManager.getPrefixed(path);
+    }
+
+    /** Convenience returning a prefixed language message for a specific player. */
+    public String langPrefixed(org.bukkit.entity.Player player, String path) {
+        return languageManager.getPrefixed(player, path);
     }
 }

@@ -25,7 +25,7 @@ public class MultiPlayerSelectGui extends AGui {
     private final List<Player> selected = new ArrayList<>();
 
     public MultiPlayerSelectGui(GameBox plugin, Game game, Player host) {
-        super(plugin, Utility.color("&8&l选择对手 - 3人模式"), 54);
+        super(plugin, Utility.color(plugin.lang("gui.mpSelectTitle")), 54);
         this.game = game;
         this.host = host;
     }
@@ -43,7 +43,7 @@ public class MultiPlayerSelectGui extends AGui {
 
         // Title
         setButton(4, Button.display(Utility.createItem(Material.DIAMOND_BLOCK,
-                "&b&l选择 2 名对手", Utility.list("&7点击玩家头颅选择", "&7选满 2 人后点击开始"))));
+                plugin.lang("gui.mpSelectTitle2"), Utility.list(plugin.lang("gui.mpSelectLore1"), plugin.lang("gui.mpSelectLore2")))));
 
         // List online players (excluding host and players in games)
         int slot = 10;
@@ -59,8 +59,8 @@ public class MultiPlayerSelectGui extends AGui {
                 meta.setOwningPlayer(online);
                 meta.setDisplayName(Utility.color("&a" + online.getName()));
                 meta.setLore(Utility.color(Utility.list(
-                        "&7点击选择此玩家",
-                        "&8在线")));
+                        plugin.lang("gui.mpClickToSelect"),
+                        plugin.lang("gui.mpOnline"))));
                 head.setItemMeta(meta);
             }
             final Player target = online;
@@ -70,11 +70,11 @@ public class MultiPlayerSelectGui extends AGui {
 
         // Start button (slot 49)
         setButton(49, Button.action("start",
-                Utility.createItem(Material.EMERALD_BLOCK, "&a&l开始游戏",
-                        Utility.list("&7已选择: " + selected.size() + "/2")),
+                Utility.createItem(Material.EMERALD_BLOCK, plugin.lang("gui.mpStartGame"),
+                        Utility.list(plugin.lang("gui.mpSelectedCount").replace("%count%", String.valueOf(selected.size())))),
                 p -> {
                     if (selected.size() != 2) {
-                        p.sendMessage(Utility.color(plugin.lang("prefix") + "&c请选择 2 名对手!"));
+                        p.sendMessage(Utility.color(plugin.lang("prefix") + plugin.lang("gui.mpNeedTwo")));
                         return;
                     }
                     List<Player> players = new ArrayList<>();
@@ -97,23 +97,23 @@ public class MultiPlayerSelectGui extends AGui {
     private void toggleSelect(Player clicker, Player target) {
         if (selected.contains(target)) {
             selected.remove(target);
-            clicker.sendMessage(Utility.color("&e取消选择: &f" + target.getName()));
+            clicker.sendMessage(Utility.color(plugin.lang("gui.mpDeselected").replace("%name%", target.getName())));
         } else {
             if (selected.size() >= 2) {
-                clicker.sendMessage(Utility.color(plugin.lang("prefix") + "&c已选满 2 人, 请先取消一个!"));
+                clicker.sendMessage(Utility.color(plugin.lang("prefix") + plugin.lang("gui.mpFull")));
                 return;
             }
             selected.add(target);
-            clicker.sendMessage(Utility.color("&a已选择: &f" + target.getName() + " &a(" + selected.size() + "/2)"));
+            clicker.sendMessage(Utility.color(plugin.lang("gui.mpSelectedPlayer").replace("%name%", target.getName()).replace("%count%", String.valueOf(selected.size()))));
         }
         // Update start button
         setButton(49, Button.action("start",
                 Utility.createItem(selected.size() == 2 ? Material.EMERALD_BLOCK : Material.GRAY_STAINED_GLASS_PANE,
-                        "&a&l开始游戏",
-                        Utility.list("&7已选择: " + selected.size() + "/2")),
+                        plugin.lang("gui.mpStartGame"),
+                        Utility.list(plugin.lang("gui.mpSelectedCount").replace("%count%", String.valueOf(selected.size())))),
                 p -> {
                     if (selected.size() != 2) {
-                        p.sendMessage(Utility.color(plugin.lang("prefix") + "&c请选择 2 名对手!"));
+                        p.sendMessage(Utility.color(plugin.lang("prefix") + plugin.lang("gui.mpNeedTwo")));
                         return;
                     }
                     List<Player> players = new ArrayList<>();

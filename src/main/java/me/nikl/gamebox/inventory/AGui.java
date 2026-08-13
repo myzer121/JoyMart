@@ -73,9 +73,16 @@ public abstract class AGui implements InventoryHolder {
     /** Rebuild the gui contents for the given viewer (e.g. fresh pagination). */
     public abstract void build(Player player);
 
-    /** Open this gui for a player. Builds first if needed. */
+    /** Open this gui for a player. Sets the active language to the player's
+     *  detected language before building, then resets it. This ensures all
+     *  language lookups during build() use the player's language. */
     public void open(Player player) {
-        build(player);
+        plugin.getLanguageManager().setActiveLanguage(player);
+        try {
+            build(player);
+        } finally {
+            plugin.getLanguageManager().resetActiveLanguage();
+        }
         player.openInventory(getInventory());
     }
 

@@ -213,7 +213,7 @@ public class InvitationHandler {
         switch (GameBoxSettings.inviteStyle.toLowerCase()) {
             case "actionbar":
                 target.spigot().sendMessage(net.md_5.bungee.api.ChatMessageType.ACTION_BAR,
-                        TextComponent.fromLegacyText(me.nikl.gamebox.utility.Utility.color(base
+                        new TextComponent(me.nikl.gamebox.utility.Utility.color(base
                                 + " " + plugin.lang("invitations.accept") + " /gamebox accept")));
                 break;
             case "title":
@@ -222,18 +222,18 @@ public class InvitationHandler {
                 break;
             case "json":
             default:
-                TextComponent msg = new TextComponent(TextComponent.fromLegacyText(
-                        me.nikl.gamebox.utility.Utility.color(base + " ")));
-                TextComponent accept = new TextComponent(TextComponent.fromLegacyText(
-                        me.nikl.gamebox.utility.Utility.color(plugin.lang("invitations.accept"))));
+                TextComponent msg = new TextComponent(
+                        me.nikl.gamebox.utility.Utility.color(base + " "));
+                TextComponent accept = new TextComponent(
+                        me.nikl.gamebox.utility.Utility.color(plugin.lang("invitations.accept")));
                 accept.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
                         "/gamebox accept " + inviter.getUniqueId()));
                 accept.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                         new ComponentBuilder(me.nikl.gamebox.utility.Utility.color(
                                 plugin.lang("invitations.acceptHover"))).create()));
                 TextComponent sep = new TextComponent(" ");
-                TextComponent decline = new TextComponent(TextComponent.fromLegacyText(
-                        me.nikl.gamebox.utility.Utility.color(plugin.lang("invitations.decline"))));
+                TextComponent decline = new TextComponent(
+                        me.nikl.gamebox.utility.Utility.color(plugin.lang("invitations.decline")));
                 decline.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
                         "/gamebox decline " + inviter.getUniqueId()));
                 decline.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,

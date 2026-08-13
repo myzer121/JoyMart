@@ -118,7 +118,7 @@ public class MusicPlayer {
         st.playing = true;
         startPlaybackTask(player, song, true);
         player.sendMessage(Utility.color(plugin.lang("prefix")
-                + "&6正在播放: &f" + song.name
+                + plugin.lang("messages.musicNowPlayingMsg").replace("%name%", song.name)
                 + (song.author != null && !song.author.isEmpty()
                         ? " &7by " + song.author : "")));
     }
@@ -149,13 +149,13 @@ public class MusicPlayer {
         if (st.playing) {
             st.playing = false;
             cancelTask(player);
-            player.sendMessage(Utility.color(plugin.lang("prefix") + "&e音乐已暂停"));
+            player.sendMessage(Utility.color(plugin.lang("prefix") + plugin.lang("messages.musicPausedMsg")));
         } else {
             st.playing = true;
             if (st.currentIndex >= 0 && st.currentIndex < songs.size()) {
                 // Resume from the paused position — do NOT reset currentTick.
                 startPlaybackTask(player, songs.get(st.currentIndex), false);
-                player.sendMessage(Utility.color(plugin.lang("prefix") + "&a音乐已恢复"));
+                player.sendMessage(Utility.color(plugin.lang("prefix") + plugin.lang("messages.musicResumedMsg")));
             }
         }
     }

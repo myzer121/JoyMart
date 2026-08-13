@@ -40,7 +40,7 @@ public class GameSettingsEditor extends AGui {
     private static final int PROPS_PER_PAGE = 2;
 
     public GameSettingsEditor(GameBox plugin, Game game, GameGui parentGui) {
-        super(plugin, Utility.color("&8&l" + game.lang("name") + " &7设置"), 54);
+        super(plugin, Utility.color("&8&l" + game.lang("name") + " " + plugin.lang("gui.settingsTitleSuffix")), 54);
         this.game = game;
         this.parentGui = parentGui;
     }
@@ -65,7 +65,7 @@ public class GameSettingsEditor extends AGui {
         if (isLottery) {
             // Money cost per ticket
             double cost = game.getConfig().getDouble("cost", 0.0);
-            buildNumberRow(player, 9 + row * 5, "cost_money", "&6票价 (金币)",
+            buildNumberRow(player, 9 + row * 5, "cost_money", plugin.lang("gui.settingsTicketMoney"),
                     (int) Math.round(cost), 1,
                     delta -> {
                         double newCost = Math.max(0, cost + delta);
@@ -79,7 +79,7 @@ public class GameSettingsEditor extends AGui {
         if (isSlotMachine) {
             // Token cost per spin
             int spinCost = game.getConfig().getInt("settings.spinCostTokens", 2);
-            buildNumberRow(player, 9 + row * 5, "spin_cost", "&6每次旋转 (代币)",
+            buildNumberRow(player, 9 + row * 5, "spin_cost", plugin.lang("gui.settingsSpinCost"),
                     spinCost, 1,
                     delta -> {
                         int newCost = Math.max(0, spinCost + delta);
@@ -95,7 +95,7 @@ public class GameSettingsEditor extends AGui {
         if (isSingle) {
             // Win tokens
             int winTokens = game.getConfig().getInt("rewards.win.tokens", 0);
-            buildNumberRow(player, 9 + row * 5, "win_tokens", "&a胜利代币",
+            buildNumberRow(player, 9 + row * 5, "win_tokens", plugin.lang("gui.settingsWinTokens"),
                     winTokens, 1,
                     delta -> {
                         int newVal = Math.max(0, winTokens + delta);
@@ -107,7 +107,7 @@ public class GameSettingsEditor extends AGui {
 
             // Lose tokens
             int loseTokens = game.getConfig().getInt("rewards.lose.tokens", 0);
-            buildNumberRow(player, 9 + row * 5, "lose_tokens", "&c失败代币",
+            buildNumberRow(player, 9 + row * 5, "lose_tokens", plugin.lang("gui.settingsLoseTokens"),
                     loseTokens, 1,
                     delta -> {
                         int newVal = Math.max(0, loseTokens + delta);
@@ -119,7 +119,7 @@ public class GameSettingsEditor extends AGui {
         } else {
             // Two-player: winner / loser / draw tokens
             int winTokens = game.getConfig().getInt("rewards.winner.tokens", 0);
-            buildNumberRow(player, 9 + row * 5, "win_tokens", "&a胜者代币",
+            buildNumberRow(player, 9 + row * 5, "win_tokens", plugin.lang("gui.settingsWinnerTokens"),
                     winTokens, 1,
                     delta -> {
                         int newVal = Math.max(0, winTokens + delta);
@@ -130,7 +130,7 @@ public class GameSettingsEditor extends AGui {
             row++;
 
             int loseTokens = game.getConfig().getInt("rewards.loser.tokens", 0);
-            buildNumberRow(player, 9 + row * 5, "lose_tokens", "&c败者代币",
+            buildNumberRow(player, 9 + row * 5, "lose_tokens", plugin.lang("gui.settingsLoserTokens"),
                     loseTokens, 1,
                     delta -> {
                         int newVal = Math.max(0, loseTokens + delta);
@@ -141,7 +141,7 @@ public class GameSettingsEditor extends AGui {
             row++;
 
             int drawTokens = game.getConfig().getInt("rewards.draw.tokens", 0);
-            buildNumberRow(player, 9 + row * 5, "draw_tokens", "&e平局代币",
+            buildNumberRow(player, 9 + row * 5, "draw_tokens", plugin.lang("gui.settingsDrawTokens"),
                     drawTokens, 1,
                     delta -> {
                         int newVal = Math.max(0, drawTokens + delta);
@@ -158,9 +158,9 @@ public class GameSettingsEditor extends AGui {
                 iconSec != null ? iconSec.getString("material", "PAPER") : "PAPER", Material.PAPER);
         setButton(4, Button.display(Utility.createItem(iconMat,
                 "&e" + game.lang("name"), Utility.list(
-                        "&7游戏: &f" + game.getGameId(),
-                        "&7类型: &f" + game.getType(),
-                        "&7点击 -/+ 调整数值"))));
+                        plugin.lang("gui.settingsGameLabel").replace("%id%", game.getGameId()),
+                        plugin.lang("gui.settingsTypeLabel").replace("%type%", String.valueOf(game.getType())),
+                        plugin.lang("gui.settingsHint")))));
 
         // Back button
         setButton(getSize() - 1, Button.action("back",
@@ -201,25 +201,25 @@ public class GameSettingsEditor extends AGui {
 
         if (monopolyPage > 0) {
             setButton(2, Button.action("prevpage",
-                    Utility.createItem(Material.ARROW, "&a上一页", null),
+                    Utility.createItem(Material.ARROW, plugin.lang("gui.prevPage"), null),
                     p -> { monopolyPage--; build(p); }));
         }
         // Title / page info at slot 4
         setButton(4, Button.display(Utility.createItem(Material.GOLD_BLOCK,
-                "&6&l大富翁 设置", Utility.list(
-                        "&7第 &f" + (monopolyPage + 1) + " &7/ &f" + totalPages + " &7页",
-                        "&7共 &f" + total + " &7处房产",
-                        "&7点击 -/+ 调整数值"))));
+                plugin.lang("gui.settingsMonopolyTitle"), Utility.list(
+                        plugin.lang("gui.settingsMonopolyPage").replace("%cur%", String.valueOf(monopolyPage + 1)).replace("%total%", String.valueOf(totalPages)),
+                        plugin.lang("gui.settingsMonopolyProps").replace("%count%", String.valueOf(total)),
+                        plugin.lang("gui.settingsHint")))));
         // Next page at slot 6 (if not last page)
         if (monopolyPage + 1 < totalPages) {
             setButton(6, Button.action("nextpage",
-                    Utility.createItem(Material.ARROW, "&a下一页", null),
+                    Utility.createItem(Material.ARROW, plugin.lang("gui.nextPage"), null),
                     p -> { monopolyPage++; build(p); }));
         }
 
         // --- Global settings (rows 1-3: slots 9-13, 18-22, 27-31) ---
         int startMoney = game.getConfig().getInt("settings.startMoney", 2000);
-        buildNumberRow(player, 9, "startmoney", "&6初始资金",
+        buildNumberRow(player, 9, "startmoney", plugin.lang("gui.settingsStartMoney"),
                 startMoney, 1,
                 delta -> {
                     int v = Math.max(0, startMoney + delta);
@@ -229,7 +229,7 @@ public class GameSettingsEditor extends AGui {
                 });
 
         int passGo = game.getConfig().getInt("settings.passGoBonus", 200);
-        buildNumberRow(player, 18, "passgo", "&6经过起点奖励",
+        buildNumberRow(player, 18, "passgo", plugin.lang("gui.settingsPassGo"),
                 passGo, 1,
                 delta -> {
                     int v = Math.max(0, passGo + delta);
@@ -239,7 +239,7 @@ public class GameSettingsEditor extends AGui {
                 });
 
         int jailFee = game.getConfig().getInt("settings.jailFee", 50);
-        buildNumberRow(player, 27, "jailfee", "&6出狱费用",
+        buildNumberRow(player, 27, "jailfee", plugin.lang("gui.settingsJailFee"),
                 jailFee, 1,
                 delta -> {
                     int v = Math.max(0, jailFee + delta);
@@ -267,7 +267,8 @@ public class GameSettingsEditor extends AGui {
             // Info (slot 0 of row)
             setButton(rowSlot, Button.display(Utility.createItem(Material.PAPER,
                     Utility.color(name), Utility.list(
-                            "&7价格: &f" + price, "&7租金: &f" + rent))));
+                            plugin.lang("gui.settingsPrice").replace("%price%", String.valueOf(price)),
+                            plugin.lang("gui.settingsRent").replace("%rent%", String.valueOf(rent))))));
 
             // Price: -10 -1 [price] +1 +10 (slots 1-5)
             setButton(rowSlot + 1, Button.action("p" + propIdx + "_prm10",
@@ -277,7 +278,7 @@ public class GameSettingsEditor extends AGui {
                     Utility.createItem(Material.RED_STAINED_GLASS_PANE, "&c-1", null),
                     p -> changeProperty(propIdx, -1, true)));
             setButton(rowSlot + 3, Button.display(Utility.createItem(Material.GOLD_INGOT,
-                    "&e价格: &f" + price, null)));
+                    plugin.lang("gui.settingsPriceLabel").replace("%price%", String.valueOf(price)), null)));
             setButton(rowSlot + 4, Button.action("p" + propIdx + "_prp1",
                     Utility.createItem(Material.LIME_STAINED_GLASS_PANE, "&a+1", null),
                     p -> changeProperty(propIdx, +1, true)));
@@ -290,7 +291,7 @@ public class GameSettingsEditor extends AGui {
                     Utility.createItem(Material.RED_STAINED_GLASS_PANE, "&c-1", null),
                     p -> changeProperty(propIdx, -1, false)));
             setButton(rowSlot + 7, Button.display(Utility.createItem(Material.EMERALD,
-                    "&e租金: &f" + rent, null)));
+                    plugin.lang("gui.settingsRentLabel").replace("%rent%", String.valueOf(rent)), null)));
             setButton(rowSlot + 8, Button.action("p" + propIdx + "_rtp1",
                     Utility.createItem(Material.LIME_STAINED_GLASS_PANE, "&a+1", null),
                     p -> changeProperty(propIdx, +1, false)));

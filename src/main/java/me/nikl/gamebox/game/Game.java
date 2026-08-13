@@ -107,29 +107,49 @@ public abstract class Game {
         return new YamlConfiguration();
     }
 
-    /** Load the game-specific language file, merging into the main language cache. */
+    /** Load the game-specific language file, merging into the main language cache.
+     *  Loads ALL available languages and merges each into its respective cache
+     *  so per-player language switching works for game strings too. */
     protected FileConfiguration loadGameLanguage() {
-        String lang = me.nikl.gamebox.GameBoxSettings.language;
-        if (lang == null || lang.isEmpty()) lang = "en";
-        // Try the configured language first, fall back to English.
-        String resource = "language/game_" + gameId + "/language_" + lang + ".yml";
-        if (plugin.getResource(resource) == null) {
-            resource = "language/game_" + gameId + "/language_en.yml";
-            lang = "en";
+        FileConfiguration result = null;
+        // Load game language files for ALL supported languages
+        for (String lang : me.nikl.gamebox.LanguageManager.getSupportedLanguages()) {
+            String resource = "language/game_" + gameId + "/language_" + lang + ".yml";
+            File file = new File(plugin.getDataFolder(), "language/game_" + gameId + "/language_" + lang + ".yml");
+            if (!file.exists() && plugin.getResource(resource) != null) {
+                plugin.saveResource(resource, false);
+            }
+            FileConfiguration cfg;
+            if (file.exists()) {
+                cfg = YamlConfiguration.loadConfiguration(file);
+                // Merge JAR defaults for missing keys
+                if (plugin.getResource(resource) != null) {
+                    try (InputStreamReader r = new InputStreamReader(plugin.getResource(resource), StandardCharsets.UTF_8)) {
+                        cfg.setDefaults(YamlConfiguration.loadConfiguration(r));
+                    } catch (Exception ignored) {}
+                }
+            } else if (plugin.getResource(resource) != null) {
+                try (InputStreamReader r = new InputStreamReader(plugin.getResource(resource), StandardCharsets.UTF_8)) {
+                    cfg = YamlConfiguration.loadConfiguration(r);
+                } catch (Exception e) {
+                    cfg = new YamlConfiguration();
+                }
+            } else {
+                cfg = new YamlConfiguration();
+            }
+            // Merge into the language-specific cache
+            plugin.getLanguageManager().mergeGameLanguage(gameId, cfg, lang);
+            // Keep the default-language config as the return value
+            if (lang.equals(me.nikl.gamebox.GameBoxSettings.language) ||
+                    (result == null && lang.equals("en"))) {
+                result = cfg;
+            }
         }
-        File file = new File(plugin.getDataFolder(), "language/game_" + gameId + "/language_" + lang + ".yml");
-        if (!file.exists() && plugin.getResource(resource) != null) {
-            plugin.saveResource(resource, false);
+        // Fallback: if no config was loaded, use an empty one
+        if (result == null) {
+            result = new YamlConfiguration();
         }
-        FileConfiguration cfg;
-        if (file.exists()) {
-            cfg = YamlConfiguration.loadConfiguration(file);
-        } else {
-            cfg = new YamlConfiguration();
-        }
-        // merge into the main cache so lang("games.<id>.<key>") resolves
-        plugin.getLanguageManager().mergeGameLanguage(gameId, cfg);
-        return cfg;
+        return result;
     }
 
     /**
@@ -167,9 +187,14 @@ public abstract class Game {
 
     public abstract GameManager<?> getGameManager();
 
-    /** Language helper scoped to this game. */
+    /** Language helper scoped to this game. Uses the active language context. */
     public String lang(String key) {
         return plugin.getLanguageManager().get("games." + gameId + "." + key);
+    }
+
+    /** Language helper scoped to this game for a specific player. */
+    public String lang(org.bukkit.entity.Player player, String key) {
+        return plugin.getLanguageManager().get(player, "games." + gameId + "." + key);
     }
 
     // ---- Special event hooks (overridable by subclasses) ----

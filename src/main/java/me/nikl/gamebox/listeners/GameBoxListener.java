@@ -150,9 +150,13 @@ public class GameBoxListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        plugin.getPluginManager().loadOnJoin(event.getPlayer());
+        Player player = event.getPlayer();
+        // Auto-detect the player's language from their client locale
+        plugin.getLanguageManager().setPlayerLanguage(player.getUniqueId(),
+                plugin.getLanguageManager().detectLanguage(player));
+        plugin.getPluginManager().loadOnJoin(player);
         Bukkit.getScheduler().runTaskLater(plugin, () ->
-                plugin.getPluginManager().giveLobbyItem(event.getPlayer()), 5L);
+                plugin.getPluginManager().giveLobbyItem(player), 5L);
     }
 
     @EventHandler
@@ -165,6 +169,8 @@ public class GameBoxListener implements Listener {
             }
         }
         plugin.getPluginManager().saveOnQuit(player);
+        // Clean up player language entry
+        plugin.getLanguageManager().removePlayer(player.getUniqueId());
     }
 
     @EventHandler

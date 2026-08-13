@@ -27,8 +27,13 @@ storage:
 
 # ---------------- Language ----------------
 language:
-  # en, zh, de, es (falls back to en)
+  # Default language when auto-detect is off or client locale is unsupported
+  # Supported: en, zh, de, es (falls back to en)
   default: en
+  # Auto-detect each player's client language (Minecraft locale setting)
+  # When true, players with Chinese clients see Chinese, English clients see English, etc.
+  # The "default" above is used as fallback for unsupported locales.
+  autoDetect: true
 
 # ---------------- Lobby ----------------
 lobby:
