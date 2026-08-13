@@ -37,7 +37,7 @@ public class GameSettingsEditor extends AGui {
     private final Game game;
     private final GameGui parentGui;
     private int monopolyPage = 0;
-    private static final int PROPS_PER_PAGE = 4;
+    private static final int PROPS_PER_PAGE = 2;
 
     public GameSettingsEditor(GameBox plugin, Game game, GameGui parentGui) {
         super(plugin, Utility.color("&8&l" + game.lang("name") + " &7设置"), 54);
@@ -182,12 +182,42 @@ public class GameSettingsEditor extends AGui {
         ItemStack filler = Utility.createItem(Material.BLACK_STAINED_GLASS_PANE, " ", null);
         for (int i = 0; i < getSize(); i++) setItem(i, filler);
 
-        // Title
-        setButton(4, Button.display(Utility.createItem(Material.GOLD_BLOCK,
-                "&6&l大富翁 设置", Utility.list("&7点击 -/+ 调整数值",
-                        "&7共 &f17 &7处房产 (分页编辑)"))));
+        // --- Row 0: navigation + title ---
+        // Back button at slot 0
+        setButton(0, Button.action("back",
+                Utility.createItem(Material.ARROW, plugin.lang("gui.backButton"), null),
+                p -> {
+                    parentGui.build(p);
+                    p.openInventory(parentGui.getInventory());
+                    plugin.getGuiManager().track(p.getUniqueId(), parentGui);
+                }));
 
-        // --- Global settings (rows 1-2: slots 9-13, 18-22) ---
+        // Previous page at slot 2 (if not first page)
+        java.util.List<?> list = game.getConfig().getList("properties");
+        int total = list != null ? list.size() : 0;
+        int totalPages = Math.max(1, (total + PROPS_PER_PAGE - 1) / PROPS_PER_PAGE);
+        if (monopolyPage >= totalPages) monopolyPage = totalPages - 1;
+        if (monopolyPage < 0) monopolyPage = 0;
+
+        if (monopolyPage > 0) {
+            setButton(2, Button.action("prevpage",
+                    Utility.createItem(Material.ARROW, "&a上一页", null),
+                    p -> { monopolyPage--; build(p); }));
+        }
+        // Title / page info at slot 4
+        setButton(4, Button.display(Utility.createItem(Material.GOLD_BLOCK,
+                "&6&l大富翁 设置", Utility.list(
+                        "&7第 &f" + (monopolyPage + 1) + " &7/ &f" + totalPages + " &7页",
+                        "&7共 &f" + total + " &7处房产",
+                        "&7点击 -/+ 调整数值"))));
+        // Next page at slot 6 (if not last page)
+        if (monopolyPage + 1 < totalPages) {
+            setButton(6, Button.action("nextpage",
+                    Utility.createItem(Material.ARROW, "&a下一页", null),
+                    p -> { monopolyPage++; build(p); }));
+        }
+
+        // --- Global settings (rows 1-3: slots 9-13, 18-22, 27-31) ---
         int startMoney = game.getConfig().getInt("settings.startMoney", 2000);
         buildNumberRow(player, 9, "startmoney", "&6初始资金",
                 startMoney, 1,
@@ -218,20 +248,13 @@ public class GameSettingsEditor extends AGui {
                     game.loadSettings();
                 });
 
-        // --- Property editor (paginated) ---
-        // Properties list from config (read fresh each build so edits show)
-        java.util.List<?> list = game.getConfig().getList("properties");
-        int total = list != null ? list.size() : 0;
-        int totalPages = Math.max(1, (total + PROPS_PER_PAGE - 1) / PROPS_PER_PAGE);
-        if (monopolyPage >= totalPages) monopolyPage = totalPages - 1;
-        if (monopolyPage < 0) monopolyPage = 0;
-
+        // --- Property editor (paginated, rows 4-5) ---
         int startIdx = monopolyPage * PROPS_PER_PAGE;
         int endIdx = Math.min(startIdx + PROPS_PER_PAGE, total);
 
-        // Each property occupies one row (9 slots):
+        // Each property occupies one full row (9 slots):
         //   [info] [-10][-1][price][+1][+10] [-1][rent][+1]
-        int baseRow = 4; // start at row 4 (slot 36) — rows 0-3 are globals + title
+        int baseRow = 4; // rows 0-3 are nav + globals
         for (int i = startIdx; i < endIdx; i++) {
             int rowSlot = 9 * (baseRow + (i - startIdx));
             if (rowSlot + 8 >= getSize()) break; // safety
@@ -262,7 +285,7 @@ public class GameSettingsEditor extends AGui {
                     Utility.createItem(Material.LIME_STAINED_GLASS_PANE, "&a+10", null),
                     p -> changeProperty(propIdx, +10, true)));
 
-            // Rent: -1 [rent] +1 (slots 6-8, compressed)
+            // Rent: -10 -1 [rent] +1 +10 (slots 6-8, but compressed to -1 [rent] +1)
             setButton(rowSlot + 6, Button.action("p" + propIdx + "_rtm1",
                     Utility.createItem(Material.RED_STAINED_GLASS_PANE, "&c-1", null),
                     p -> changeProperty(propIdx, -1, false)));
@@ -273,28 +296,10 @@ public class GameSettingsEditor extends AGui {
                     p -> changeProperty(propIdx, +1, false)));
         }
 
-        // Pagination buttons
-        if (monopolyPage > 0) {
-            setButton(45, Button.action("prevpage",
-                    Utility.createItem(Material.ARROW, "&a上一页", null),
-                    p -> { monopolyPage--; build(p); }));
-        }
-        setButton(49, Button.display(Utility.createItem(Material.BOOK,
-                "&e第 &f" + (monopolyPage + 1) + " &e/ &f" + totalPages + " &e页", null)));
-        if (monopolyPage + 1 < totalPages) {
-            setButton(53, Button.action("nextpage",
-                    Utility.createItem(Material.ARROW, "&a下一页", null),
-                    p -> { monopolyPage++; build(p); }));
-        }
-
-        // Back button
-        setButton(getSize() - 5, Button.action("back",
-                Utility.createItem(Material.ARROW, plugin.lang("gui.backButton"), null),
-                p -> {
-                    parentGui.build(p);
-                    p.openInventory(parentGui.getInventory());
-                    plugin.getGuiManager().track(p.getUniqueId(), parentGui);
-                }));
+        // NOTE: Navigation (prev/next/back) is on row 0 — no overlap with
+        // property rows on rows 4-5. Previously pagination was at slots
+        // 45/49/53 which collided with the second property row, making
+        // property price editing impossible.
     }
 
     /** Change a property's price or rent by a delta and persist. */
