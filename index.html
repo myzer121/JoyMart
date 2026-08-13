@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="2; url=en/">
+  <title>JoyMart - Mini-Game Lobby Plugin</title>
+  <link rel="icon" type="image/png" href="joymart-logo.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f6f8fa 0%, #e8eef5 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+    .logo {
+      width: 360px;
+      max-width: 80vw;
+      height: auto;
+      margin-bottom: 32px;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12));
+      animation: floatUp 0.6s ease;
+    }
+    h1 {
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    p {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e0e0e0;
+      border-top-color: #345d9e;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto;
+    }
+    .links {
+      margin-top: 28px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .links a {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .links a.primary {
+      background: #345d9e;
+      color: #fff;
+    }
+    .links a.primary:hover {
+      background: #2a4d85;
+      transform: translateY(-2px);
+    }
+    .links a.secondary {
+      background: #fff;
+      color: #345d9e;
+      border: 1px solid #d0d7de;
+    }
+    .links a.secondary:hover {
+      background: #f6f8fa;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes floatUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="joymart-logo.png" alt="JoyMart" class="logo">
+    <h1>JoyMart</h1>
+    <p>Mini-Game Lobby Plugin for Spigot / Paper 1.21</p>
+    <div class="spinner"></div>
+    <div class="links">
+      <a href="en/" class="primary">English</a>
+      <a href="zh_Hans/" class="secondary">中文</a>
+    </div>
+  </div>
+  <script>
+    setTimeout(function() { window.location.href = 'en/'; }, 2000);
+  </script>
+</body>
+</html>
