@@ -31,6 +31,11 @@ public class MultiPlayerSelectGui extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return Utility.color(plugin.lang("gui.mpSelectTitle"));
+    }
+
+    @Override
     public void build(Player player) {
         clear();
         selected.clear(); // rebuild selection state each time

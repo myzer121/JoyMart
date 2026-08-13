@@ -51,14 +51,12 @@ public class GuiManager {
             return;
         }
         plugin.getPluginManager().enterGameBox(player);
-        mainGui.build(player);
-        player.openInventory(mainGui.getInventory());
+        mainGui.open(player);
         openGuis.put(player.getUniqueId(), mainGui);
     }
 
     public void openShop(Player player) {
-        shop.build(player);
-        player.openInventory(shop.getInventory());
+        shop.open(player);
         openGuis.put(player.getUniqueId(), shop);
     }
 
@@ -77,15 +75,13 @@ public class GuiManager {
         // all items to vanish from the player's inventory.
         plugin.getPluginManager().setInAdminFlow(player.getUniqueId(), true);
         plugin.getPluginManager().tempRestoreInventory(player);
-        shopAdmin.build(player);
-        player.openInventory(shopAdmin.getInventory());
+        shopAdmin.open(player);
         openGuis.put(player.getUniqueId(), shopAdmin);
     }
 
     public void openTopList(Player player, String gameId) {
         TopListPage page = new TopListPage(plugin, gameId);
-        page.build(player);
-        player.openInventory(page.getInventory());
+        page.open(player);
         openGuis.put(player.getUniqueId(), page);
     }
 
@@ -131,8 +127,7 @@ public class GuiManager {
         if (plugin.getPluginManager().isInGameBox(player.getUniqueId())) {
             plugin.getPluginManager().leaveGameBox(player);
         }
-        deliveryBoxGui.build(player);
-        player.openInventory(deliveryBoxGui.getInventory());
+        deliveryBoxGui.open(player);
         openGuis.put(player.getUniqueId(), deliveryBoxGui);
     }
 }

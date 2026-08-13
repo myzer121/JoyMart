@@ -26,6 +26,11 @@ public class GameGui extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return game.lang("name");
+    }
+
+    @Override
     public void build(Player player) {
         clear();
 
@@ -64,8 +69,7 @@ public class GameGui extends AGui {
                         Collections.singletonList("&7" + plugin.lang("gui.editSettingsLore")));
                 setButton(20, Button.action("editsettings", editSettings, p -> {
                     GameSettingsEditor editor = new GameSettingsEditor(plugin, game, this);
-                    editor.build(p);
-                    p.openInventory(editor.getInventory());
+                    editor.open(p);
                     plugin.getGuiManager().track(p.getUniqueId(), editor);
                 }));
             }
@@ -116,8 +120,7 @@ public class GameGui extends AGui {
                     Collections.singletonList("&7" + plugin.lang("gui.editSettingsLore")));
             setButton(21, Button.action("editsettings", editSettings, p -> {
                 GameSettingsEditor editor = new GameSettingsEditor(plugin, game, this);
-                editor.build(p);
-                p.openInventory(editor.getInventory());
+                editor.open(p);
                 plugin.getGuiManager().track(p.getUniqueId(), editor);
             }));
         }

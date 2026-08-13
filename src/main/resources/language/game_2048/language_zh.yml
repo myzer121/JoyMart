@@ -8,6 +8,7 @@ lore:
 
 play: '&a开始游戏'
 invite: '&7邀请好友'
+invite2: '&7邀请好友 (2人)'
 highscores: '&e高分榜'
 vsAi: '&b对战 AI'
 

@@ -44,6 +44,11 @@ public class InviteGui extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return plugin.lang("gui.inviteTitle").replace("%game%", game.lang("name"));
+    }
+
+    @Override
     public void build(Player viewer) {
         clear();
 

@@ -46,6 +46,11 @@ public class GameSettingsEditor extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return Utility.color("&8&l" + game.lang("name") + " " + plugin.lang("gui.settingsTitleSuffix"));
+    }
+
+    @Override
     public void build(Player player) {
         clear();
 
@@ -166,8 +171,7 @@ public class GameSettingsEditor extends AGui {
         setButton(getSize() - 1, Button.action("back",
                 Utility.createItem(Material.ARROW, plugin.lang("gui.backButton"), null),
                 p -> {
-                    parentGui.build(p);
-                    p.openInventory(parentGui.getInventory());
+                    parentGui.open(p);
                     plugin.getGuiManager().track(p.getUniqueId(), parentGui);
                 }));
     }
@@ -187,8 +191,7 @@ public class GameSettingsEditor extends AGui {
         setButton(0, Button.action("back",
                 Utility.createItem(Material.ARROW, plugin.lang("gui.backButton"), null),
                 p -> {
-                    parentGui.build(p);
-                    p.openInventory(parentGui.getInventory());
+                    parentGui.open(p);
                     plugin.getGuiManager().track(p.getUniqueId(), parentGui);
                 }));
 

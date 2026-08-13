@@ -54,6 +54,11 @@ public class Shop extends AGui {
         refreshCategories();
     }
 
+    @Override
+    protected String getDynamicTitle() {
+        return plugin.getShopConfig().getString("shop.title", plugin.lang("gui.tokenShop"));
+    }
+
     /** Re-read the categories section from the (possibly reloaded) shop config. */
     public void refreshCategories() {
         this.categories = plugin.getShopConfig().getConfigurationSection("shop.categories");

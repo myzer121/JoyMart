@@ -4,6 +4,8 @@ lore:
   - '&7Hit the moles before they hide!'
 play: 'Play'
 invite: 'Invite'
+invite2: 'Invite (2P)'
+vsAi: 'Vs AI'
 highscores: 'High Scores'
 title: '&c&lWhack-a-Mole'
 moleName: '&6&lMole'

@@ -22,7 +22,7 @@ public final class GameBoxSettings {
 
     public static String language = "en";
     /** When true, auto-detect each player's client language via Player.getLocale(). */
-    public static boolean autoDetectLanguage = true;
+    public static boolean autoDetectLanguage = false;
 
     public static boolean lobbyEnabled = false;
     public static java.util.List<String> lobbyWorlds = new java.util.ArrayList<>();
@@ -65,7 +65,7 @@ public final class GameBoxSettings {
         bungee = config.getBoolean("storage.mysql.bungee", false);
 
         language = config.getString("language.default", "en");
-        autoDetectLanguage = config.getBoolean("language.autoDetect", true);
+        autoDetectLanguage = config.getBoolean("language.autoDetect", false);
 
         lobbyEnabled = config.getBoolean("lobby.enabled", false);
         lobbyWorlds = config.getStringList("lobby.worlds");

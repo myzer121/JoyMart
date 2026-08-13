@@ -4,6 +4,7 @@ lore:
   - '&7匹配 3 个或更多宝石!'
 play: '开始游戏'
 invite: '邀请好友'
+invite2: '邀请好友 (2人)'
 highscores: '高分榜'
 vsAi: '&b对战 AI'
 title: '&d&l宝石迷阵'

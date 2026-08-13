@@ -36,6 +36,11 @@ public class ShopAdmin extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return Utility.color(plugin.lang("gui.shopAdminTitle"));
+    }
+
+    @Override
     public void build(Player player) {
         clear();
         ConfigurationSection categories = plugin.getShopConfig()

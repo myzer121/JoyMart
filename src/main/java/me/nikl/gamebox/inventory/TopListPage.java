@@ -34,6 +34,11 @@ public class TopListPage extends AGui {
         this.perPage = 36;
     }
 
+    @Override
+    protected String getDynamicTitle() {
+        return plugin.lang("gui.topListTitle").replace("%game%", gameId);
+    }
+
     private static List<TopList.Entry> getCached(GameBox plugin, String gameId) {
         Cached c = CACHE.get(gameId);
         if (c != null && System.currentTimeMillis() - c.timestamp < CACHE_TTL_MS) {
@@ -81,11 +86,11 @@ public class TopListPage extends AGui {
         // Prev / Next
         if (page > 0) {
             setButton(45, Button.action("prev", Utility.createItem(Material.ARROW,
-                    plugin.lang("gui.prevPage"), null), p -> { page--; build(p); p.openInventory(getInventory()); }));
+                    plugin.lang("gui.prevPage"), null), p -> { page--; open(p); }));
         }
         if (end < entries.size()) {
             setButton(53, Button.action("next", Utility.createItem(Material.ARROW,
-                    plugin.lang("gui.nextPage"), null), p -> { page++; build(p); p.openInventory(getInventory()); }));
+                    plugin.lang("gui.nextPage"), null), p -> { page++; open(p); }));
         }
 
         // Back

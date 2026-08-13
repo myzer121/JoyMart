@@ -23,6 +23,11 @@ public class MainGui extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return plugin.lang("gui.mainTitle");
+    }
+
+    @Override
     public void build(Player player) {
         clear();
 

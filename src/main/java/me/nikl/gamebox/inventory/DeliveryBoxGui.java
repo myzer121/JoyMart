@@ -41,6 +41,11 @@ public class DeliveryBoxGui extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return Utility.color(plugin.lang("gui.deliveryBoxTitle"));
+    }
+
+    @Override
     public boolean allowPlayerInventoryInteraction() {
         // Block all interaction with the player's own inventory — items can
         // only flow one way (delivery box → inventory), never back.

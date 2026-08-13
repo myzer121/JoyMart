@@ -48,6 +48,11 @@ public class MusicPlayerGui extends AGui {
     }
 
     @Override
+    protected String getDynamicTitle() {
+        return Utility.color(plugin.lang("gui.musicTitle"));
+    }
+
+    @Override
     public void build(Player viewer) {
         clear();
 

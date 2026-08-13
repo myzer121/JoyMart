@@ -8,6 +8,8 @@ lore:
 
 play: '&aPlay'
 invite: '&7Invite'
+invite2: '&7Invite (2P)'
+vsAi: '&cVs AI'
 highscores: '&eHigh Scores'
 
 title: '&8&lSnake'

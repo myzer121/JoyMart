@@ -27,7 +27,7 @@ import java.util.Arrays;
 public abstract class AGui implements InventoryHolder {
 
     protected final GameBox plugin;
-    protected final String title;
+    protected String title;
     protected final int size;
     protected final Button[] buttons;
     protected Inventory inventory;
@@ -42,6 +42,21 @@ public abstract class AGui implements InventoryHolder {
     /** Lazily create the inventory using this gui as its holder. */
     protected Inventory createInventory() {
         return Bukkit.createInventory(this, size, me.nikl.gamebox.utility.Utility.color(title));
+    }
+
+    /** Recreate the inventory with a new title (e.g. when language changes).
+     *  Copies existing buttons to the new inventory. */
+    protected void recreateInventory(String newTitle) {
+        this.title = newTitle;
+        Inventory old = this.inventory;
+        this.inventory = createInventory();
+        if (old != null) {
+            // Preserve existing items
+            for (int i = 0; i < size && i < old.getSize(); i++) {
+                ItemStack item = old.getItem(i);
+                if (item != null) this.inventory.setItem(i, item);
+            }
+        }
     }
 
     public Inventory getInventory() {
@@ -73,12 +88,24 @@ public abstract class AGui implements InventoryHolder {
     /** Rebuild the gui contents for the given viewer (e.g. fresh pagination). */
     public abstract void build(Player player);
 
+    /** Get the title for the current language context. Subclasses can override
+     *  to provide a dynamic title that changes with the active language.
+     *  The default returns the static title set at construction time. */
+    protected String getDynamicTitle() {
+        return title;
+    }
+
     /** Open this gui for a player. Sets the active language to the player's
      *  detected language before building, then resets it. This ensures all
      *  language lookups during build() use the player's language. */
     public void open(Player player) {
         plugin.getLanguageManager().setActiveLanguage(player);
         try {
+            // Recreate the inventory so the title matches the active language.
+            // The title may have been set at construction time with a different
+            // language context (e.g. during plugin startup before any player
+            // joins, or when the config language was changed after startup).
+            recreateInventory(getDynamicTitle());
             build(player);
         } finally {
             plugin.getLanguageManager().resetActiveLanguage();

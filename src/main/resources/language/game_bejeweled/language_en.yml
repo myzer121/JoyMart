@@ -4,6 +4,8 @@ lore:
   - '&7Match 3 or more gems!'
 play: 'Play'
 invite: 'Invite'
+invite2: 'Invite (2P)'
+vsAi: 'Vs AI'
 highscores: 'High Scores'
 title: '&d&lBejeweled'
 gems:
