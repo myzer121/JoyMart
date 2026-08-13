@@ -193,7 +193,12 @@ public class DinoRunSession extends AbstractGameSession {
             try { task.cancel(); } catch (IllegalStateException ignored) {}
             task = null;
         }
-        started = false;
+        // Do NOT set started = false here. Doing so would cause build()
+        // (called via refresh()) to see started == false and start a
+        // DUPLICATE task, resulting in two schedulers running step()
+        // simultaneously — collision detection breaks and the dino can
+        // pass through cacti.  We simply create a fresh task with the
+        // new interval while keeping started == true.
         startTask();
     }
 
@@ -235,8 +240,9 @@ public class DinoRunSession extends AbstractGameSession {
             if (newInterval != currentIntervalTicks) {
                 currentIntervalTicks = newInterval;
                 rescheduleTask();
-                refresh();
-                return;
+                // Do NOT return here — the collision check below must
+                // still run on the same tick, otherwise the dino can
+                // pass through a cactus on speed-up ticks.
             }
         }
 

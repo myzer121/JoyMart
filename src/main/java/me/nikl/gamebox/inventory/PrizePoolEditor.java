@@ -25,6 +25,10 @@ public class PrizePoolEditor {
 
     /** Open the prize-list page for the given prize game. */
     public static void open(GameBox plugin, Player player, PrizeGame game) {
+        // Restore inventory ONCE when entering the prize editor flow.
+        // Previously this was called in PrizeListPage.open() on every
+        // navigation, causing the same item-vanishing bug as ShopAdmin.
+        plugin.getPluginManager().tempRestoreInventory(player);
         PrizeListPage page = new PrizeListPage(plugin, game);
         page.open(player);
         plugin.getGuiManager().track(player.getUniqueId(), page);
@@ -50,9 +54,8 @@ public class PrizePoolEditor {
 
         @Override
         public void open(Player player) {
-            // Temporarily restore the player's real inventory so they can
-            // pick up items to add as prizes.
-            plugin.getPluginManager().tempRestoreInventory(player);
+            // Inventory restore is handled once at PrizePoolEditor.open()
+            // (the static entry point), not here on every page navigation.
             super.open(player);
         }
 

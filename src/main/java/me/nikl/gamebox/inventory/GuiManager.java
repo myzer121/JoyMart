@@ -68,6 +68,13 @@ public class GuiManager {
             player.sendMessage(plugin.langPrefixed("messages.noPermission"));
             return;
         }
+        // Temporarily restore the player's real inventory ONCE when entering
+        // the admin flow. This lets them pick up items to add to the shop.
+        // The inventory is re-cleared when they leave via ShopAdmin's back
+        // button. Previously, tempRestoreInventory was called in
+        // ShopAdminCategory.open() on every navigation, which overwrote
+        // the player's current inventory state and caused items to vanish.
+        plugin.getPluginManager().tempRestoreInventory(player);
         shopAdmin.build(player);
         player.openInventory(shopAdmin.getInventory());
         openGuis.put(player.getUniqueId(), shopAdmin);
