@@ -1,0 +1,19 @@
+# 扫雷语言文件 (简体中文)
+# 键合并到 'games.minesweeper.*' 命名空间下
+
+name: '&b扫雷'
+lore:
+  - '&7清除雷区且不踩到地雷!'
+  - '&7左键: 揭开 | 右键: 标记'
+
+play: '&a开始游戏'
+invite: '&7邀请好友'
+highscores: '&e高分榜'
+vsAi: '&b对战 AI'
+
+title: '&8&l扫雷'
+
+labels:
+  mine: '地雷'
+  flag: '标记'
+  hidden: '未揭开'

@@ -1,0 +1,48 @@
+# 国际象棋语言文件 (简体中文)
+# 这些键由框架合并到 'games.chess.*' 命名空间下。
+
+name: '&6国际象棋'
+lore:
+  - '&7与好友或 AI 对战的 6x6 洛斯阿拉莫斯变体!'
+  - '&7无象、无王车易位 — 其他国际象棋规则照常。'
+
+play: '&a开始游戏'
+invite: '&7邀请好友'
+highscores: '&e高分榜'
+vsAi: '&b对战 AI'
+
+title: '&8&l国际象棋'
+
+buttons:
+  restart: '重新开始'
+  restartHint: '开始新游戏'
+  resign: '认输'
+  resignHint: '放弃本局 (按失败计)'
+
+labels:
+  turn: '当前回合'
+  status: '状态'
+  moves: '步数'
+  white: '白方'
+  black: '黑方'
+  toMove: '轮到 %p% 走棋'
+  normal: '正常'
+  check: '将军!'
+  gameOver: '游戏结束'
+  aiThinking: 'AI 思考中...'
+  selected: '已选中'
+  capture: '吃子'
+  lastMove: '上一步'
+  king: '王'
+  queen: '后'
+  rook: '车'
+  knight: '马'
+  bishop: '象'
+  pawn: '兵'
+  legend: '图例'
+
+messages:
+  check: '&c将军!'
+  draw: '&e逼和 — 本局平局。'
+  win: '&a%player% 将杀获胜!'
+  notYourTurn: '&c现在不是你的回合!'

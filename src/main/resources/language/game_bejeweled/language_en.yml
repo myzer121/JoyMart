@@ -1,0 +1,18 @@
+# Bejeweled language file (English)
+name: '&dBejeweled'
+lore:
+  - '&7Match 3 or more gems!'
+play: 'Play'
+invite: 'Invite'
+highscores: 'High Scores'
+title: '&d&lBejeweled'
+gems:
+  red: '&cRed Gem'
+  blue: '&9Blue Gem'
+  green: '&aGreen Gem'
+  yellow: '&eYellow Gem'
+  purple: '&5Purple Gem'
+  orange: '&6Orange Gem'
+infoName: '&dBejeweled'
+infoScore: '&fScore: &e%score%'
+infoMoves: '&fMoves left: &e%moves%'

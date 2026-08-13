@@ -1,0 +1,31 @@
+# Connect 4 language file (English)
+# These keys are merged under the namespace: games.connect4.<key>
+
+name: '&6Connect 4'
+lore:
+  - '&7Connect four in a row!'
+  - '&7Drop pieces into the columns.'
+play: 'Play'
+invite: 'Invite to Play'
+highscores: 'High Scores'
+vsAi: '&bPlay vs AI'
+title: '&8&lConnect 4'
+
+# Display names of the board pieces.
+items:
+  empty: '&7Empty'
+  red: '&cRed Piece'
+  yellow: '&eYellow Piece'
+
+# Info items shown in the right-hand info columns.
+info:
+  turn: '&eTurn: &f%player%'
+  legend: '&7Click a column to drop your piece'
+
+# Chat messages. %player% is replaced in code.
+messages:
+  turn: '&e%player%''s turn &7- drop a piece!'
+  notYourTurn: '&cIt is not your turn!'
+  columnFull: '&cThat column is full!'
+  win: '&a%player% &7connected four and wins!'
+  draw: '&7The board is full - &eit''s a draw!'

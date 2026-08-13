@@ -1,0 +1,37 @@
+name: JoyMart
+version: ${project.version}
+main: me.nikl.gamebox.GameBox
+api-version: '1.21'
+author: nikl
+description: A game lobby plugin with built-in games.
+softdepend: [Vault, PlaceholderAPI, CalendarEvents]
+commands:
+  gamebox:
+    description: Open the JoyMart menu or start a game.
+    aliases: [games, gb]
+    usage: /gamebox [help|info|token|<game>]
+  gameboxadmin:
+    description: Admin commands for JoyMart.
+    aliases: [gba, gbadmin]
+    usage: /gameboxadmin [reload|tokens|games|language|migrate|reset|shop]
+permissions:
+  gamebox.use:
+    description: Allows opening the JoyMart menu.
+    default: true
+  gamebox.play.*:
+    description: Allows playing all JoyMart games.
+    default: true
+  gamebox.admin:
+    description: Allows admin commands.
+    default: op
+    children:
+      gamebox.admin.reload: true
+      gamebox.admin.tokens: true
+      gamebox.admin.games: true
+      gamebox.admin.language: true
+      gamebox.admin.migrate: true
+      gamebox.admin.reset: true
+      gamebox.admin.shop: true
+  gamebox.admin.shop:
+    description: Allows managing the token shop via GUI (add/remove items).
+    default: op

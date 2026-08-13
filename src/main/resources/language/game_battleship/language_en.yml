@@ -1,0 +1,35 @@
+# Battleship language file (English)
+# These keys are merged under the namespace: games.battleship.<key>
+
+name: '&9Battleship'
+lore:
+  - '&7Sink the enemy fleet!'
+  - '&7Ships auto-placed. Take turns firing.'
+play: 'Play'
+invite: 'Invite to Play'
+highscores: 'High Scores'
+vsAi: '&bPlay vs AI'
+title: '&8&lBattleship'
+
+# Display names of the ocean grid items.
+items:
+  water: '&8? Unknown Waters'
+  miss: '&b~ Miss'
+  hit: '&cX Hit!'
+
+# Info items shown in the right-hand info columns.
+info:
+  turn: '&eTurn: &f%player%'
+  status: '&7Targets: &9%p1% &c%r1% &8| &9%p2% &c%r2%'
+
+# Chat messages. %player%, %row%, %col%, %cells% are replaced in code.
+messages:
+  fleetPlaced: '&9Fleets deployed! &7Each fleet has &e%cells% &7cells.'
+  yourFleet: '&7Your fleet has been deployed (&e%cells% &7cells).'
+  turn: '&e%player%''s turn &7- fire at the enemy ocean!'
+  hit: '&c%player% &7hit a ship at &f(%row%, %col%)&7!'
+  miss: '&b%player% &7missed at &f(%row%, %col%)&7.'
+  sunk: '&4%player% &7sank a ship!'
+  notYourTurn: '&cIt is not your turn!'
+  alreadyFired: '&cYou already fired there!'
+  win: '&a%player% &7sank the entire enemy fleet!'

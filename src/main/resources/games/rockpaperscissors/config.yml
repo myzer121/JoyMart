@@ -1,0 +1,26 @@
+# Rock-Paper-Scissors configuration
+# icon.material    : Material shown for this game in the JoyMart GUI
+# cost             : Economy cost to play (0 = free)
+# rewards          : Tokens / money / console commands awarded on each outcome
+# settings.bestOf  : Match length; first to ceil(bestOf/2) round wins takes the match
+
+icon:
+  material: SHEARS
+
+cost: 0.0
+
+rewards:
+  winner:
+    tokens: 5
+    money: 0.0
+    commands: []
+  loser:
+    tokens: 1
+    money: 0.0
+    commands: []
+  draw:
+    tokens: 2
+    money: 0.0
+
+settings:
+  bestOf: 3

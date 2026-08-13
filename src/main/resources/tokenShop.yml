@@ -1,0 +1,69 @@
+# JoyMart token shop
+# Categories group items. Each item can have permission/node and run commands.
+# cost is in tokens. Commands use %player% placeholder.
+#
+# Item fields:
+#   material    Spigot material name (case-insensitive). Used as the shop
+#               display icon. When giveItem is true, also given to the buyer.
+#   giveItem    when true, the material+amount is given directly to the buyer
+#               via the Bukkit API (reliable on 1.20.1+, no /give command).
+#   amount      number of items to give (default 1, only used with giveItem)
+#   name        display name (color codes with &)
+#   lore        list of lore lines (color codes with &)
+#   cost        token cost (must be >= 0)
+#   permission  optional: player must have this permission to SEE the item
+#   buyPermission optional: player must have this permission to BUY the item
+#   commands    list of console commands run on purchase (%player% replaced)
+#               Use this for non-item effects (fly, potion effects, etc.).
+#               Item giving is handled automatically by the material field.
+#   closeAfter  close the shop GUI after purchase (default true)
+#   confirm     require a second click to confirm purchase (default false)
+#
+# Per-item permission nodes are NOT auto-registered. Grant them via your
+# permissions plugin (LuckPerms, etc.) to control who can buy what.
+#
+# NOTE: The default items have been removed. Admins should add their own
+# items via the in-game shop admin GUI (/gba shop or the admin button in
+# the shop). Use the "Add Item" button while holding an item on the cursor.
+# Categories support pagination — when a page is full, use the next/prev
+# buttons in the bottom row.
+
+shop:
+  enabled: true
+  size: 27
+  # title is taken from the language file (gui.tokenShop) when not set here.
+  # To override, uncomment and set your own:
+  # title: '&8Token Shop'
+
+  categories:
+    blocks:
+      name: '&6Blocks'
+      material: GRASS_BLOCK
+      slot: 11
+      title: '&8Blocks Shop'
+      size: 27
+      items: {}
+
+    perks:
+      name: '&dPerks'
+      material: NETHER_STAR
+      slot: 13
+      title: '&8Perks Shop'
+      size: 27
+      items: {}
+
+    cosmetics:
+      name: '&3Cosmetics'
+      material: PUFFERFISH
+      slot: 15
+      title: '&8Cosmetics Shop'
+      size: 27
+      items: {}
+
+    tokens:
+      name: '&eToken Packs'
+      material: SUNFLOWER
+      slot: 22
+      title: '&8Token Packs'
+      size: 18
+      items: {}

@@ -1,0 +1,219 @@
+# JoyMart language file (English)
+prefix: '&6[JoyMart]&r '
+
+messages:
+  noPermission: '&cYou do not have permission to do that.'
+  playerOnly: '&cThis command can only be run by a player.'
+  reloaded: '&aConfiguration reloaded.'
+  notOnline: '&cThat player is not online.'
+  unknownGame: '&cUnknown game: &e%game%'
+  gameDisabled: '&cThat game is currently disabled.'
+  alreadyInGame: '&cYou are already in a game!'
+  cannotAfford: '&cYou cannot afford the cost of &e%cost%&c!'
+  notEnoughTokens: '&cYou need &e%tokens%&c tokens but only have &e%balance%&c.'
+  gameNotFound: '&cGame not found.'
+  dataMigrating: '&eMigrating data... please wait.'
+  dataMigrated: '&aData migration complete.'
+  highscoresReset: '&aHigh scores for &e%game%&a have been reset.'
+  tokensSet: '&aSet &e%player%&a''s tokens to &e%amount%&a.'
+  tokensGiven: '&aGave &e%amount%&a tokens to &e%player%&a.'
+  tokensTaken: '&aTook &e%amount%&a tokens from &e%player%&a.'
+  tokensBalance: '&eYou have &f%amount%&e tokens.'
+  bought: '&aYou bought &e%item%&a for &e%cost%&a tokens.'
+  confirmPurchase: '&eClick again to confirm purchase of &f%item%&e.'
+  noGamePermission: '&cYou do not have permission to play this game.'
+  shopRemoveConfirm: '&eClick again to confirm removal of &f%item%&e.'
+  shopRemoved: '&aRemoved &e%item%&a from the shop.'
+  shopAdded: '&aAdded &e%item%&a to the shop (key: &f%key%&a, default cost 10).'
+  shopAddNoItem: '&cHold an item on your cursor, then click the add slot.'
+  shopAddFailed: '&cCould not add that item to the shop.'
+  shopNameChanged: '&aItem renamed to &f%name%&a.'
+  shopPriceChanged: '&aItem price changed to &f%cost%&a tokens.'
+  betWon: '&aYou won the bet! Gained &e%tokens%&a tokens!'
+  betLost: '&cYou lost the bet, losing &e%tokens%&c tokens.'
+  betRefunded: '&eYour bet of &e%tokens%&e tokens has been refunded.'
+  deliveryStored: '&e&l%item%&r&e was stored in your delivery box! Type &f/gb box&e or click the delivery box button to claim.'
+  deliveryItemTaken: '&aTook &f%item%&a from the delivery box.'
+  deliveryTakenAll: '&aTook &e%count%&a item(s) from the delivery box.'
+  deliveryInventoryFull: '&cInventory full! Cannot take more items.'
+  deliveryEmpty: '&eYour delivery box is empty.'
+
+invitations:
+  # %player% = inviter
+  received: '&e%player% &6has invited you to play &e%game%&6!'
+  accept: '&a[Accept]'
+  acceptHover: '&7Click to accept the invitation'
+  decline: '&c[Decline]'
+  declineHover: '&7Click to decline the invitation'
+  sent: '&aInvitation sent to &e%player%&a.'
+  accepted: '&a%player% accepted your invitation!'
+  declined: '&c%player% declined your invitation.'
+  expired: '&cYour invitation to %player% has expired.'
+  targetExpired: '&cInvitation from %player% expired.'
+  alreadyPending: '&cYou already have a pending invitation to that player.'
+  selfInvite: '&cYou cannot invite yourself!'
+  busy: '&cThat player is busy right now.'
+  timeoutPrompt: '&eType a player name in chat to invite, or &cquit&e to cancel.'
+  betInfo: '&6Bet: &e%bet%&6 tokens (winner takes all!)'
+
+titles:
+  enter: '&6JoyMart'
+  enterSubtitle: '&7Select a game to play'
+  win: '&aYou Win!'
+  winSubtitle: '&e+%tokens% tokens'
+  lose: '&cYou Lose'
+  loseSubtitle: '&7Better luck next time'
+
+gui:
+  mainTitle: '&8&lJoyMart'
+  closeButton: '&cClose'
+  backButton: '&7Back'
+  nextPage: '&aNext Page'
+  prevPage: '&aPrevious Page'
+  nextPageLore: '&7Go to the next page'
+  prevPageLore: '&7Go to the previous page'
+  tokenShop: '&eToken Shop'
+  tokenShopLore:
+    - '&7Spend your tokens!'
+    - '&eBalance: &f%tokens%'
+  topListTitle: '&8High Scores: %game%'
+  highScore: '&6#%rank% &f%player% &7- &e%score%'
+  shopDisabled: '&cShop disabled'
+  shopEmpty: '&cThis category is empty'
+  shopCost: '&eCost: &f%cost% tokens'
+  shopCostTokens: '&7Cost: &e%cost% tokens'
+  shopClickToBuy: '&aClick to purchase'
+  shopClickAgainConfirm: '&cClick again to confirm'
+  shopNoCategories: '&cNo categories configured'
+  shopItemsCount: '&7Items: &f%count%'
+  shopClickToManage: '&eClick to manage'
+  shopKey: '&7Key: &f%key%'
+  shopConfirmRemove: '&c&lClick again to CONFIRM removal'
+  shopClickToRemove: '&cClick to remove'
+  shopAddHint1: '&7Hold an item on your cursor'
+  shopAddHint2: '&7and click here to add'
+  shopAddHint3: '&7it to this category.'
+  shopDefaultCost: '&eDefault cost: &f10 tokens'
+  shopEditHint: '&7(edit tokenShop.yml to change)'
+  shopAdminTitle: '&8&lShop Management'
+  shopAdminCatTitle: '&8Manage: %cat%'
+  shopAdminButton: '&6&lManage Shop'
+  shopAdminLore: 'Add / remove items'
+  shopAddItem: 'Add Item'
+  shopClickToEdit: '&eClick to edit'
+  shopEditItemTitle: '&8Edit Item'
+  shopEditHint2: '&7Change the name and price here'
+  shopEditName: 'Rename'
+  shopEditNameHint: '&7Click, then type a new name in chat'
+  shopCostLabel: 'Current Price'
+  shopConfirmRemoveHint: '&7This cannot be undone'
+  shopClickToRemoveHint: '&7Click, then confirm to delete'
+  shopRenamePrompt: '&eType a new item name in chat (or "cancel"):'
+  shopAddCategory: '&a&l+ Add Category'
+  shopAddCategoryHint: '&7Click to create a new shop category'
+  shopCategoryKeyPrompt: '&eType a category key in chat (lowercase letters/numbers, no spaces). Or type "cancel":'
+  shopCategoryNamePrompt: '&eType a display name for this category in chat. Or type "cancel":'
+  shopCategoryAdded: '&aCategory "&f%key%&a" added.'
+  shopCategoryExists: '&cA category with key "&f%key%&c" already exists.'
+  shopCategoryInvalidKey: '&cInvalid key. Use only lowercase letters, numbers and underscores.'
+  shopRemoveCategory: '&cRemove Category'
+  shopRemoveCategoryHint: '&7Delete this category and all its items'
+  shopConfirmRemoveCategory: '&c&lClick again to CONFIRM removing this category'
+  shopConfirmRemoveCategoryHint: '&7This will delete ALL items in this category!'
+  shopCategoryRemoved: '&aCategory "&f%key%&a" removed.'
+  shopRenameCategory: '&eRename Category'
+  shopRenameCategoryHint: '&7Change the display name of this category'
+  shopCategoryRenamePrompt: '&eType a new category name in chat (or "cancel"):'
+  shopCategoryRenamed: '&aCategory renamed to "&f%name%&a".'
+  editPrizes: '&6&lEdit Prizes'
+  editPrizesLore: 'Configure what can be won'
+  editSettings: 'Game Settings'
+  editSettingsLore: 'Edit cost and token rewards'
+  playLore: '&7Click to play!'
+  inviteLore: '&7Invite a player to play!'
+  invite3Lore: '&7Invite two players for a 3P match!'
+  vsAiLore: '&7Play against the computer!'
+  highscoresLore: '&7View the top scores.'
+  inviteTitle: '&8Invite Player - %game%'
+  betLabel: 'Current Bet'
+  betYourBalance: '&7Your balance: &e%tokens% tokens'
+  betTheirBalance: '&7Their balance: &e%tokens% tokens'
+  betWinnerTakes: '&6Winner takes all!'
+  betNone: '&7No bet (friendly match)'
+  betAmount: '&7Bet: &e%amount% tokens'
+  betClickToInvite: '&aClick the head to invite'
+  betClickToInviteNoBet: '&aClick the head to invite (no bet)'
+  deliveryBoxTitle: '&8&lDelivery Box'
+  deliveryBoxButton: '&6&lDelivery Box'
+  deliveryBoxLore: '&7Claim your purchased items'
+  deliveryBoxPending: '&e&l%count% item(s) waiting!'
+  deliveryClickToTake: '&a▶ Click to take'
+  deliveryTakeAll: '&a&l▼ Take All'
+  deliveryTakeAllLore: '&7Move all items to your inventory'
+  deliveryInfo: '&fDelivery Box Info'
+  deliveryInfoLore: '&7%count% item(s) in total'
+  deliveryMoreHidden: '&7(&e%count%&7 more not shown)'
+  musicPlayer: '&6&lMusic Player'
+  musicLore: '&7Click to open music controls'
+
+prize:
+  weight: '&7Weight: &f%w%'
+  tokens: '&7Tokens: &f%t%'
+  money: '&7Money: &f%m%'
+  commands: '&7Commands: &f%c%'
+  clickToEdit: '&eClick to edit'
+  add: 'Add Prize'
+  addHint2: '&7then click here to add a prize'
+  addDefaults: '&eDefaults: weight 10, tokens 5'
+  added: '&aPrize added.'
+  removed: '&aPrize removed.'
+  editTitle: '&8Edit Prize'
+  tokensLabel: 'Tokens'
+  moneyLabel: 'Money'
+  weightLabel: 'Weight'
+  remove: 'Remove Prize'
+  removeHint: '&7Delete this prize from the pool'
+
+games:
+  2048:
+    name: '&a2048'
+    lore: ['&7Slide tiles to reach 2048!']
+  minesweeper:
+    name: '&bMinesweeper'
+    lore: ['&7Clear the field without hitting a mine.']
+  whackamole:
+    name: '&cWhack-a-Mole'
+    lore: ['&7Hit the moles before they hide!']
+  bejeweled:
+    name: '&dBejeweled'
+    lore: ['&7Match 3 or more gems.']
+  battleship:
+    name: '&9Battleship'
+    lore: ['&7Sink the enemy fleet!']
+  connect4:
+    name: '&6Connect 4'
+    lore: ['&7Connect four in a row.']
+  tictactoe:
+    name: '&eTic-Tac-Toe'
+    lore: ['&7Three in a row.']
+  rockpaperscissors:
+    name: '&5Rock Paper Scissors'
+    lore: ['&7Best of N rounds.']
+  lottery:
+    name: '&dLottery'
+    lore: ['&7Pick numbers and test your luck!']
+  slotmachine:
+    name: '&6Slot Machine'
+    lore: ['&7Spin the reels for a prize!']
+  maze:
+    name: '&aMaze'
+    lore: ['&7Find the exit in as few moves as possible!']
+  snake:
+    name: '&aSnake'
+    lore: ['&7Steer the snake, eat food, grow longer!']
+  dinorun:
+    name: '&aDino Run'
+    lore: ['&7Jump the cacti and survive as long as you can!']
+  chess:
+    name: '&6Chess'
+    lore: ['&7Play 6x6 Los Alamos chess vs a friend or AI!']

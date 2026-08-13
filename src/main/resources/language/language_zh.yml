@@ -1,0 +1,218 @@
+# JoyMart 语言文件 (简体中文)
+prefix: '&6[JoyMart]&r '
+
+messages:
+  noPermission: '&c你没有权限执行此操作。'
+  playerOnly: '&c该命令只能由玩家执行。'
+  reloaded: '&a配置已重载。'
+  notOnline: '&c该玩家不在线。'
+  unknownGame: '&c未知游戏: &e%game%'
+  gameDisabled: '&c该游戏当前已禁用。'
+  alreadyInGame: '&c你已经在游戏中!'
+  cannotAfford: '&c你无法支付 &e%cost%&c 的费用!'
+  notEnoughTokens: '&c你需要 &e%tokens%&c 代币, 但只有 &e%balance%&c。'
+  gameNotFound: '&c未找到游戏。'
+  dataMigrating: '&e正在迁移数据... 请稍候。'
+  dataMigrated: '&a数据迁移完成。'
+  highscoresReset: '&a游戏 &e%game%&a 的高分已重置。'
+  tokensSet: '&a已将 &e%player%&a 的代币设为 &e%amount%&a。'
+  tokensGiven: '&a已给予 &e%player%&a &e%amount%&a 代币。'
+  tokensTaken: '&a已从 &e%player%&a 扣除 &e%amount%&a 代币。'
+  tokensBalance: '&e你拥有 &f%amount%&e 代币。'
+  bought: '&a你以 &e%cost%&a 代币购买了 &e%item%&a。'
+  confirmPurchase: '&e再次点击以确认购买 &f%item%&e。'
+  noGamePermission: '&c你没有游玩该游戏的权限。'
+  shopRemoveConfirm: '&e再次点击以确认下架 &f%item%&e。'
+  shopRemoved: '&a已从商店下架 &e%item%&a。'
+  shopAdded: '&a已上架 &e%item%&a 到商店 (键: &f%key%&a, 默认价格 10)。'
+  shopAddNoItem: '&c请将物品拿在鼠标上, 再点击上架槽位。'
+  shopAddFailed: '&c无法将该物品上架。'
+  shopNameChanged: '&a商品名称已改为 &f%name%&a。'
+  shopPriceChanged: '&a商品价格已改为 &f%cost%&a 代币。'
+  betWon: '&a你赢得了赌注! 获得 &e%tokens%&a 代币!'
+  betLost: '&c你输掉了赌注, 损失 &e%tokens%&c 代币。'
+  betRefunded: '&e你的 &e%tokens%&e 代币赌注已退还。'
+  deliveryStored: '&e&l%item%&r&e 已存入取货箱! 输入 &f/gb box&e 或点击主菜单的取货箱按钮领取。'
+  deliveryItemTaken: '&a已从取货箱取出 &f%item%&a。'
+  deliveryTakenAll: '&a已从取货箱取出 &e%count%&a 件物品。'
+  deliveryInventoryFull: '&c背包已满! 无法取出更多物品。'
+  deliveryEmpty: '&e取货箱是空的。'
+
+invitations:
+  received: '&e%player% &6邀请你游玩 &e%game%&6!'
+  accept: '&a[接受]'
+  acceptHover: '&7点击接受邀请'
+  decline: '&c[拒绝]'
+  declineHover: '&7点击拒绝邀请'
+  sent: '&a已向 &e%player%&a 发送邀请。'
+  accepted: '&a%player% 接受了你的邀请!'
+  declined: '&c%player% 拒绝了你的邀请。'
+  expired: '&c你发送给 %player% 的邀请已过期。'
+  targetExpired: '&c来自 %player% 的邀请已过期。'
+  alreadyPending: '&c你已有一个对该玩家的待处理邀请。'
+  selfInvite: '&c你不能邀请自己!'
+  busy: '&c该玩家现在很忙。'
+  timeoutPrompt: '&e在聊天中输入玩家名以邀请, 或输入 &cquit&e 取消。'
+  betInfo: '&6赌注: &e%bet%&6 代币 (赢家通吃!)'
+
+titles:
+  enter: '&6JoyMart'
+  enterSubtitle: '&7选择一个游戏来玩'
+  win: '&a你赢了!'
+  winSubtitle: '&e+%tokens% 代币'
+  lose: '&c你输了'
+  loseSubtitle: '&7下次加油'
+
+gui:
+  mainTitle: '&8&lJoyMart'
+  closeButton: '&c关闭'
+  backButton: '&7返回'
+  nextPage: '&a下一页'
+  prevPage: '&a上一页'
+  nextPageLore: '&7前往下一页'
+  prevPageLore: '&7返回上一页'
+  tokenShop: '&e代币商店'
+  tokenShopLore:
+    - '&7消费你的代币!'
+    - '&e余额: &f%tokens%'
+  topListTitle: '&8高分榜: %game%'
+  highScore: '&6#%rank% &f%player% &7- &e%score%'
+  shopDisabled: '&c商店未启用'
+  shopEmpty: '&c此分类没有商品'
+  shopCost: '&e花费: &f%cost% 代币'
+  shopCostTokens: '&7花费: &e%cost% 代币'
+  shopClickToBuy: '&a点击购买'
+  shopClickAgainConfirm: '&c再次点击确认'
+  shopNoCategories: '&c未配置任何分类'
+  shopItemsCount: '&7商品数: &f%count%'
+  shopClickToManage: '&e点击管理'
+  shopKey: '&7键: &f%key%'
+  shopConfirmRemove: '&c&l再次点击确认下架'
+  shopClickToRemove: '&c点击下架'
+  shopAddHint1: '&7将物品拿在鼠标光标上'
+  shopAddHint2: '&7然后点击此处上架'
+  shopAddHint3: '&7到该分类。'
+  shopDefaultCost: '&e默认花费: &f10 代币'
+  shopEditHint: '&7(修改 tokenShop.yml 调整)'
+  shopAdminTitle: '&8&l商店管理'
+  shopAdminCatTitle: '&8管理: %cat%'
+  shopAdminButton: '&6&l管理商店'
+  shopAdminLore: '上架 / 下架物品'
+  shopAddItem: '上架物品'
+  shopClickToEdit: '&e点击编辑'
+  shopEditItemTitle: '&8编辑商品'
+  shopEditHint2: '&7在此页面修改名称和价格'
+  shopEditName: '修改名称'
+  shopEditNameHint: '&7点击后在聊天中输入新名称'
+  shopCostLabel: '当前价格'
+  shopConfirmRemoveHint: '&7此操作不可撤销'
+  shopClickToRemoveHint: '&7点击后再次确认以删除'
+  shopRenamePrompt: '&e请在聊天中输入新的商品名称 (输入 cancel 取消):'
+  shopAddCategory: '&a&l+ 添加分类'
+  shopAddCategoryHint: '&7点击创建一个新的商店分类'
+  shopCategoryKeyPrompt: '&e在聊天中输入分类键名 (小写字母/数字, 无空格)。或输入 "cancel" 取消:'
+  shopCategoryNamePrompt: '&e在聊天中输入分类显示名称。或输入 "cancel" 取消:'
+  shopCategoryAdded: '&a已添加分类 "&f%key%&a"。'
+  shopCategoryExists: '&c键名为 "&f%key%&c" 的分类已存在。'
+  shopCategoryInvalidKey: '&c无效键名。只能使用小写字母、数字和下划线。'
+  shopRemoveCategory: '&c删除分类'
+  shopRemoveCategoryHint: '&7删除此分类及其所有商品'
+  shopConfirmRemoveCategory: '&c&l再次点击确认删除此分类'
+  shopConfirmRemoveCategoryHint: '&7这将删除此分类下的所有商品!'
+  shopCategoryRemoved: '&a已删除分类 "&f%key%&a"。'
+  shopRenameCategory: '&e重命名分类'
+  shopRenameCategoryHint: '&7修改此分类的显示名称'
+  shopCategoryRenamePrompt: '&e在聊天中输入新的分类名称 (或输入 "cancel" 取消):'
+  shopCategoryRenamed: '&a分类已重命名为 "&f%name%&a"。'
+  editPrizes: '&6&l编辑奖项'
+  editPrizesLore: '配置可以抽到的奖品'
+  editSettings: '游戏设置'
+  editSettingsLore: '编辑花费和代币奖励'
+  playLore: '&7点击开始游戏!'
+  inviteLore: '&7邀请一位玩家对战!'
+  invite3Lore: '&7邀请两名玩家三人对战!'
+  vsAiLore: '&7与电脑对战!'
+  highscoresLore: '&7查看高分榜。'
+  inviteTitle: '&8邀请玩家 - %game%'
+  betLabel: '当前赌注'
+  betYourBalance: '&7你的余额: &e%tokens% 代币'
+  betTheirBalance: '&7对方余额: &e%tokens% 代币'
+  betWinnerTakes: '&6赢家通吃!'
+  betNone: '&7当前无赌注 (友好对局)'
+  betAmount: '&7赌注: &e%amount% 代币'
+  betClickToInvite: '&a点击头像发送邀请'
+  betClickToInviteNoBet: '&a点击头像发送邀请 (无赌注)'
+  deliveryBoxTitle: '&8&l取货箱'
+  deliveryBoxButton: '&6&l取货箱'
+  deliveryBoxLore: '&7领取你购买的物品'
+  deliveryBoxPending: '&e&l%count% 件物品待领取!'
+  deliveryClickToTake: '&a▶ 点击取出'
+  deliveryTakeAll: '&a&l▼ 全部放入背包'
+  deliveryTakeAllLore: '&7将所有物品放入你的背包'
+  deliveryInfo: '&f取货箱信息'
+  deliveryInfoLore: '&7共有 &e%count%&7 件物品'
+  deliveryMoreHidden: '&7(还有 &e%count%&7 件未显示)'
+  musicPlayer: '&6&l音乐播放器'
+  musicLore: '&7点击打开音乐控制面板'
+
+prize:
+  weight: '&7权重: &f%w%'
+  tokens: '&7代币: &f%t%'
+  money: '&7金币: &f%m%'
+  commands: '&7命令数: &f%c%'
+  clickToEdit: '&e点击编辑'
+  add: '添加奖项'
+  addHint2: '&7然后点击此处添加奖项'
+  addDefaults: '&e默认: 权重 10, 代币 5'
+  added: '&a奖项已添加。'
+  removed: '&a奖项已移除。'
+  editTitle: '&8编辑奖项'
+  tokensLabel: '代币'
+  moneyLabel: '金币'
+  weightLabel: '权重'
+  remove: '移除奖项'
+  removeHint: '&7从奖池中删除此奖项'
+
+games:
+  2048:
+    name: '&a2048'
+    lore: ['&7滑动方块达到 2048!']
+  minesweeper:
+    name: '&b扫雷'
+    lore: ['&7清除雷区且不踩到地雷。']
+  whackamole:
+    name: '&c打地鼠'
+    lore: ['&7在地鼠躲起来前打中它们!']
+  bejeweled:
+    name: '&d宝石迷阵'
+    lore: ['&7匹配 3 个或更多宝石。']
+  battleship:
+    name: '&9战舰'
+    lore: ['&7击沉敌方舰队!']
+  connect4:
+    name: '&6四子棋'
+    lore: ['&7连成四子。']
+  tictactoe:
+    name: '&e井字棋'
+    lore: ['&7三子连线。']
+  rockpaperscissors:
+    name: '&5石头剪刀布'
+    lore: ['&7N 局制。']
+  lottery:
+    name: '&d彩票'
+    lore: ['&7选号抽奖, 拼运气!']
+  slotmachine:
+    name: '&6抽奖机'
+    lore: ['&7转动转盘赢取奖品!']
+  maze:
+    name: '&a迷宫'
+    lore: ['&7用最少步数找到出口!']
+  snake:
+    name: '&a贪吃蛇'
+    lore: ['&7控制蛇吃食物, 别撞墙或自己!']
+  dinorun:
+    name: '&a小恐龙快跑'
+    lore: ['&7跳过仙人掌, 看你能撑多久!']
+  chess:
+    name: '&6国际象棋'
+    lore: ['&7与好友或 AI 对弈 6x6 洛斯阿拉莫斯变体!']

@@ -1,0 +1,33 @@
+# Minesweeper game configuration
+# icon.material   -> item shown in the game selection GUI
+# cost            -> economy cost to start a game (0 = free)
+# guiSize         -> size of the game inventory (must equal rows * cols, max 54)
+# scorePerToken   -> bonus tokens = score / scorePerToken (0 = no scaling)
+# moneyPerToken   -> bonus money = bonusTokens * moneyPerToken (0 = no scaling)
+# trackHighScore  -> whether scores are saved to the high-score table
+#
+# settings.rows/cols must fit a chest inventory (cols <= 9, rows*cols <= 54).
+# Default board is 6x9 = 54 cells with 10 mines.
+
+icon:
+  material: TNT
+
+cost: 0.0
+guiSize: 54
+scorePerToken: 100000
+moneyPerToken: 0.0
+trackHighScore: true
+
+settings:
+  rows: 6
+  cols: 9
+  mines: 10
+
+rewards:
+  win:
+    tokens: 15
+    money: 10.0
+    commands: []
+  lose:
+    tokens: 1
+    money: 0.0

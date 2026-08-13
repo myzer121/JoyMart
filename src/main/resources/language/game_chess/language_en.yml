@@ -1,0 +1,48 @@
+# Chess language file (English)
+# These keys are merged under 'games.chess.*' by the framework.
+
+name: '&6Chess'
+lore:
+  - '&7Play 6x6 Los Alamos chess vs a friend or AI!'
+  - '&7No bishops, no castling — all other chess rules apply.'
+
+play: '&aPlay'
+invite: '&7Invite a Friend'
+highscores: '&eHigh Scores'
+vsAi: '&bPlay vs AI'
+
+title: '&8&lChess'
+
+buttons:
+  restart: 'Restart'
+  restartHint: 'Start a new game'
+  resign: 'Resign'
+  resignHint: 'Give up (counts as a loss)'
+
+labels:
+  turn: 'Turn'
+  status: 'Status'
+  moves: 'Moves'
+  white: 'White'
+  black: 'Black'
+  toMove: '%p% to move'
+  normal: 'Normal'
+  check: 'Check!'
+  gameOver: 'Game over'
+  aiThinking: 'AI is thinking...'
+  selected: 'SELECTED'
+  capture: 'CAPTURE'
+  lastMove: 'Last move'
+  king: 'King'
+  queen: 'Queen'
+  rook: 'Rook'
+  knight: 'Knight'
+  bishop: 'Bishop'
+  pawn: 'Pawn'
+  legend: 'Legend'
+
+messages:
+  check: '&cCheck!'
+  draw: '&eStalemate — the game is a draw.'
+  win: '&a%player% wins by checkmate!'
+  notYourTurn: '&cIt is not your turn!'

@@ -1,0 +1,30 @@
+# 2048 language file (English)
+# These keys are merged under 'games.2048.*' by the framework.
+
+name: '&a2048'
+lore:
+  - '&7Slide tiles to reach 2048!'
+  - '&7Merge equal numbers to score.'
+
+play: '&aPlay'
+invite: '&7Invite'
+highscores: '&eHigh Scores'
+
+title: '&8&l2048'
+
+buttons:
+  up: 'Up'
+  down: 'Down'
+  left: 'Left'
+  right: 'Right'
+  restart: 'Restart'
+  upHint: 'Slide tiles up'
+  downHint: 'Slide tiles down'
+  leftHint: 'Slide tiles left'
+  rightHint: 'Slide tiles right'
+  restartHint: 'Start a new game'
+
+labels:
+  score: 'Score'
+  target: 'Target'
+  reached: '2048 reached!'

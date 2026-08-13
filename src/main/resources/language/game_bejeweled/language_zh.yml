@@ -1,0 +1,19 @@
+# 宝石迷阵语言文件 (简体中文)
+name: '&d宝石迷阵'
+lore:
+  - '&7匹配 3 个或更多宝石!'
+play: '开始游戏'
+invite: '邀请好友'
+highscores: '高分榜'
+vsAi: '&b对战 AI'
+title: '&d&l宝石迷阵'
+gems:
+  red: '&c红宝石'
+  blue: '&9蓝宝石'
+  green: '&a绿宝石'
+  yellow: '&e黄宝石'
+  purple: '&5紫宝石'
+  orange: '&6橙宝石'
+infoName: '&d宝石迷阵'
+infoScore: '&f分数: &e%score%'
+infoMoves: '&f剩余步数: &e%moves%'

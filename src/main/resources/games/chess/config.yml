@@ -1,0 +1,28 @@
+# Chess game configuration
+# A 6x6 Los Alamos chess variant playable against another player or a simple AI.
+# The board is 6x6 (instead of 8x8) because a Bukkit inventory caps at 54
+# slots — Los Alamos chess is the closest playable international-chess-like
+# variant that fits.
+# Pieces per side: 1 King, 1 Queen, 2 Rooks, 2 Knights, 6 Pawns (no Bishops).
+
+icon:
+  material: GOLD_BLOCK
+
+cost: 0.0
+guiSize: 54
+scorePerToken: 0
+moneyPerToken: 0.0
+trackHighScore: true
+
+rewards:
+  winner:
+    tokens: 15
+    money: 10.0
+    commands: []
+  loser:
+    tokens: 1
+    money: 0.0
+    commands: []
+  draw:
+    tokens: 2
+    money: 0.0

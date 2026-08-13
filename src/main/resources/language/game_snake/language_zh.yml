@@ -1,0 +1,41 @@
+# 贪吃蛇语言文件 (简体中文)
+# 这些键由框架合并到 'games.snake.*' 命名空间下。
+
+name: '&a贪吃蛇'
+lore:
+  - '&7控制蛇移动, 吃食物让身体变长!'
+  - '&7别撞到墙壁或自己的尾巴。'
+
+play: '&a开始游戏'
+invite: '&7邀请好友'
+highscores: '&e高分榜'
+vsAi: '&b对战 AI'
+
+title: '&8&l贪吃蛇'
+
+buttons:
+  up: '上'
+  down: '下'
+  left: '左'
+  right: '右'
+  restart: '重新开始'
+  pause: '暂停'
+  resume: '继续'
+  upHint: '让蛇向上移动'
+  downHint: '让蛇向下移动'
+  leftHint: '让蛇向左移动'
+  rightHint: '让蛇向右移动'
+  restartHint: '开始新游戏'
+  pauseHint: '暂停游戏'
+  resumeHint: '继续游戏'
+
+labels:
+  score: '分数'
+  length: '长度'
+  food: '已吃食物'
+  paused: '已暂停'
+  gameOver: '游戏结束'
+  head: '蛇头'
+  body: '蛇身'
+  foodItem: '食物'
+  foodHint: '吃了会变长并加分'

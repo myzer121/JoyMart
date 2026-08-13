@@ -1,0 +1,29 @@
+# Dino Run game configuration
+# A Chrome-dino-style endless runner: the dino runs in place on the left,
+# cacti scroll in from the right. Click Jump to leap over them.
+
+icon:
+  material: LIME_WOOL
+
+cost: 0.0
+guiSize: 54
+scorePerToken: 30
+moneyPerToken: 0.0
+trackHighScore: true
+
+settings:
+  # Ticks between world scroll steps (lower = faster).
+  scrollIntervalTicks: 6
+  # Minimum gap (in scroll steps) between consecutive cacti.
+  minObstacleGap: 4
+  # Maximum gap (in scroll steps) between consecutive cacti.
+  maxObstacleGap: 9
+
+rewards:
+  win:
+    tokens: 10
+    money: 5.0
+    commands: []
+  lose:
+    tokens: 1
+    money: 0.0

@@ -1,0 +1,72 @@
+# Monopoly language file (English)
+# Keys merged under games.monopoly. namespace
+
+name: '&6Monopoly'
+lore:
+  - '&7Buy land, collect rent, bankrupt opponents!'
+  - '&7Last millionaire standing wins!'
+  - '&7Supports 2-3 players or vs AI'
+
+play: '&aPlay'
+invite: '&aInvite (2P)'
+invite2: '&aInvite (2P)'
+invite3: '&bInvite (3P)'
+vsAi: '&cVs AI (2P)'
+highscores: '&eHigh Scores'
+
+title: '&8&lMonopoly'
+
+go: '&a&lGO'
+jail: '&7&lJail'
+freeParking: '&b&lFree Parking'
+goToJail: '&c&lGo To Jail!'
+chance: '&5Chance'
+communityChest: '&3Chest'
+
+rollDice: '&aRoll Dice'
+buyProperty: '&aBuy Property &7($%price%)'
+endTurn: '&eEnd Turn'
+payRent: '&cPay Rent &7($%rent%)'
+cannotAfford: '&cCannot afford!'
+propertyOwned: '&7Owned by &f%owner%'
+propertyUnowned: '&7Unowned &7| Price: &f$%price% &7| Rent: &f$%rent%'
+
+yourTurn: '&eTurn: &f%player%'
+rolled: '&f%player% &erolled &f%dice% &eand moved %dice% spaces'
+landedOn: '&f%player% &elanded on &f%space%'
+boughtProperty: '&f%player% &abought &f%property% &a(-$%price%)'
+paidRent: '&f%player% &cpaid &f$%rent% &crent to &f%owner%'
+passedGo: '&f%player% &apassed GO, earned &f$%bonus%'
+wentToJail: '&f%player% &cwas sent to jail!'
+bankrupt: '&f%player% &4went bankrupt!'
+gameOver: '&6Game Over! &f%player% &6is the last millionaire!'
+drawCard: '&f%player% &edrew a card: &f%card%'
+jailTurn: '&7You are in jail. Pay &f$%fee% &7or roll doubles.'
+paidJailFee: '&f%player% &7paid &f$%fee% &7to leave jail'
+jailStay: '&f%player% &7stays in jail'
+
+balance: '&7Balance: &f$%amount%'
+position: '&7Position: &f%pos%'
+properties: '&7Properties: &f%count%'
+bankruptStatus: '&4Bankrupt'
+
+musicPlayer: '&6Music Player'
+musicLore: '&7Click to open music controls'
+forfeit: '&cForfeit'
+forfeitLore: '&7Click to forfeit the current game'
+
+chanceCards:
+  - '&eBank dividend! Receive &f$150'
+  - '&eRepairs! Pay &f$80'
+  - '&eHappy birthday! Each player gives you &f$50'
+  - '&eAdvance to GO, collect &f$200'
+  - '&eGo directly to jail! Do not pass GO'
+  - '&eLottery win! Receive &f$100'
+
+chestCards:
+  - '&eInheritance! Receive &f$100'
+  - '&eMedical bills! Pay &f$50'
+  - '&eTax refund! Receive &f$20'
+  - '&eAdvance to GO, collect &f$200'
+  - '&eGo directly to jail! Do not pass GO'
+  - '&eSchool fees! Pay &f$50'

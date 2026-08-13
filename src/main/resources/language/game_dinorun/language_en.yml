@@ -1,0 +1,34 @@
+# Dino Run language file (English)
+# These keys are merged under 'games.dinorun.*' by the framework.
+
+name: '&aDino Run'
+lore:
+  - '&7Jump the cacti and survive as long as you can!'
+  - '&7Like the Chrome offline dino game.'
+
+play: '&aPlay'
+invite: '&7Invite'
+highscores: '&eHigh Scores'
+
+title: '&8&lDino Run'
+
+buttons:
+  jump: 'Jump'
+  restart: 'Restart'
+  pause: 'Pause'
+  resume: 'Resume'
+  jumpHint: 'Leap over a cactus'
+  restartHint: 'Start a new run'
+  pauseHint: 'Pause the run'
+  resumeHint: 'Resume the run'
+
+labels:
+  score: 'Score'
+  cleared: 'Cacti cleared'
+  speed: 'Speed'
+  paused: 'PAUSED'
+  gameOver: 'GAME OVER'
+  dino: 'Dino'
+  dinoHint: 'You! Jump to avoid cacti'
+  cactus: 'Cactus'
+  cactusHint: 'Don''t run into this!'

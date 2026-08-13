@@ -1,0 +1,30 @@
+# Rock-Paper-Scissors language file (English)
+# Keys are namespaced under games.rockpaperscissors. by the framework.
+
+name: '&9Rock Paper Scissors'
+lore:
+  - '&7Best-of-N rounds.'
+  - '&7Invite a friend and pick your weapon!'
+
+play: '&aPlay'
+invite: '&aInvite to Play'
+highscores: '&eHigh Scores'
+vsAi: '&bPlay vs AI'
+
+title: '&8&lRock Paper Scissors'
+
+rock: '&fRock'
+paper: '&fPaper'
+scissors: '&fScissors'
+clickToPick: '&7Click to pick'
+
+round: '&eRound %round% / %bestOf%'
+score: '&7%player%: &f%score%'
+status: '&7%player%: %status%'
+ready: '&aReady'
+waiting: '&7Waiting...'
+
+roundWin: '&a%player% &ewins the round!'
+tie: '&eRound tied! Replay.'
+win: '&a%player% &ewins the match!'
+draw: '&eThe match ended in a draw!'

@@ -1,0 +1,32 @@
+# 战舰语言文件 (简体中文)
+# 键合并到 games.battleship.<key> 命名空间下
+
+name: '&9战舰'
+lore:
+  - '&7击沉敌方舰队!'
+  - '&7自动部署战舰, 轮流开火。'
+play: '开始游戏'
+invite: '邀请对战'
+highscores: '高分榜'
+vsAi: '&b对战 AI'
+title: '&8&l战舰'
+
+items:
+  water: '&8? 未知海域'
+  miss: '&b~ 未命中'
+  hit: '&cX 命中!'
+
+info:
+  turn: '&e回合: &f%player%'
+  status: '&7目标: &9%p1% &c%r1% &8| &9%p2% &c%r2%'
+
+messages:
+  fleetPlaced: '&9舰队已部署! &7每支舰队有 &e%cells% &7格。'
+  yourFleet: '&7你的舰队已部署 (&e%cells% &7格)。'
+  turn: '&e%player% 的回合 &7- 向敌方海域开火!'
+  hit: '&c%player% &7在 &f(%row%, %col%)&7 命中一艘船!'
+  miss: '&b%player% &7在 &f(%row%, %col%)&7 未命中。'
+  sunk: '&4%player% &7击沉了一艘船!'
+  notYourTurn: '&c现在不是你的回合!'
+  alreadyFired: '&c你已经攻击过那里了!'
+  win: '&a%player% &7击沉了全部敌方舰队!'

@@ -1,0 +1,12 @@
+name: '&a迷宫'
+lore:
+  - '&7用最少步数找到出口!'
+play: '&a开始游戏'
+highscores: '&e高分榜'
+title: '&8&l迷宫'
+goal: '出口'
+goalHint: '&7到达此格子即可获胜'
+you: '你'
+moves: '&7步数: &f%m%'
+moveHint: '&7点击相邻的通路移动'
+winMessage: '&a你用 &e%m%&a 步走出了迷宫! 得分: &e%s%'

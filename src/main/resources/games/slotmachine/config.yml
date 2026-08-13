@@ -1,0 +1,65 @@
+# Slot machine game configuration
+# Each spin costs `spinCostTokens` tokens. The reels land on a prize drawn
+# weighted-randomly from the `prizes` list below (higher weight = more likely).
+# Admins can also edit the prize pool in-game via the "Edit Prizes" button
+# (gamebox.admin.games permission) in the slot machine's game menu.
+
+icon:
+  material: DISPENSER
+
+cost: 0.0
+guiSize: 27
+scorePerToken: 0
+moneyPerToken: 0.0
+trackHighScore: true
+
+settings:
+  spinCostTokens: 2
+
+rewards:
+  win:
+    tokens: 0
+    money: 0.0
+    commands: []
+  lose:
+    tokens: 0
+    money: 0.0
+
+# Weighted prize pool. weight controls how often each prize is drawn.
+# tokens/money/commands are awarded when the prize is hit.
+# material is also used as the reel symbol shown on the center reel.
+prizes:
+  - material: COAL
+    name: '&8没中奖'
+    weight: 60
+    tokens: 0
+    money: 0.0
+    commands: []
+  - material: IRON_INGOT
+    name: '&f小奖'
+    weight: 25
+    tokens: 3
+    money: 0.0
+    commands:
+      - 'give %player% iron_ingot 1'
+  - material: GOLD_INGOT
+    name: '&e中奖'
+    weight: 12
+    tokens: 8
+    money: 0.0
+    commands:
+      - 'give %player% gold_ingot 1'
+  - material: DIAMOND
+    name: '&b大奖'
+    weight: 2
+    tokens: 30
+    money: 0.0
+    commands:
+      - 'give %player% diamond 1'
+  - material: NETHER_STAR
+    name: '&6超级大奖!'
+    weight: 1
+    tokens: 150
+    money: 100.0
+    commands:
+      - 'give %player% nether_star 1'

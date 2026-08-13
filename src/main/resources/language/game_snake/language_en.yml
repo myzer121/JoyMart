@@ -1,0 +1,40 @@
+# Snake language file (English)
+# These keys are merged under 'games.snake.*' by the framework.
+
+name: '&aSnake'
+lore:
+  - '&7Steer the snake, eat food, grow longer!'
+  - '&7Don''t hit the walls or your own tail.'
+
+play: '&aPlay'
+invite: '&7Invite'
+highscores: '&eHigh Scores'
+
+title: '&8&lSnake'
+
+buttons:
+  up: 'Up'
+  down: 'Down'
+  left: 'Left'
+  right: 'Right'
+  restart: 'Restart'
+  pause: 'Pause'
+  resume: 'Resume'
+  upHint: 'Turn the snake up'
+  downHint: 'Turn the snake down'
+  leftHint: 'Turn the snake left'
+  rightHint: 'Turn the snake right'
+  restartHint: 'Start a new game'
+  pauseHint: 'Pause the snake'
+  resumeHint: 'Resume the game'
+
+labels:
+  score: 'Score'
+  length: 'Length'
+  food: 'Food eaten'
+  paused: 'PAUSED'
+  gameOver: 'GAME OVER'
+  head: 'Head'
+  body: 'Body'
+  foodItem: 'Food'
+  foodHint: 'Eat to grow and score'

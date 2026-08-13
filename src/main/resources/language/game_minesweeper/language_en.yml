@@ -1,0 +1,18 @@
+# Minesweeper language file (English)
+# These keys are merged under 'games.minesweeper.*' by the framework.
+
+name: '&bMinesweeper'
+lore:
+  - '&7Clear the field without hitting a mine!'
+  - '&7Left-click: reveal | Right-click: flag'
+
+play: '&aPlay'
+invite: '&7Invite'
+highscores: '&eHigh Scores'
+
+title: '&8&lMinesweeper'
+
+labels:
+  mine: 'Mine'
+  flag: 'Flag'
+  hidden: 'Hidden'

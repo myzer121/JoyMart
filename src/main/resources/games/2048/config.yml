@@ -1,0 +1,29 @@
+# 2048 game configuration
+# icon.material   -> item shown in the game selection GUI
+# cost            -> economy cost to start a game (0 = free)
+# guiSize         -> size of the game inventory (must be a multiple of 9, 9..54)
+# scorePerToken   -> bonus tokens = score / scorePerToken (0 = no scaling)
+# moneyPerToken   -> bonus money = bonusTokens * moneyPerToken (0 = no scaling)
+# trackHighScore  -> whether scores are saved to the high-score table
+
+icon:
+  material: PAPER
+
+cost: 0.0
+guiSize: 45
+scorePerToken: 100
+moneyPerToken: 0.0
+trackHighScore: true
+
+settings:
+  gridSize: 4
+  targetTile: 2048
+
+rewards:
+  win:
+    tokens: 10
+    money: 5.0
+    commands: []
+  lose:
+    tokens: 1
+    money: 0.0

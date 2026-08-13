@@ -1,0 +1,29 @@
+# Snake game configuration
+# Control a snake on a 5x9 grid; eat food to grow and avoid hitting the
+# walls or your own tail. The snake speeds up as it grows longer.
+
+icon:
+  material: LIME_WOOL
+
+cost: 0.0
+guiSize: 54
+scorePerToken: 50
+moneyPerToken: 0.0
+trackHighScore: true
+
+settings:
+  # Initial move interval in ticks (20 ticks = 1 second).
+  startIntervalTicks: 20
+  # Minimum move interval after speed-up (lower = faster).
+  minIntervalTicks: 6
+  # Ticks removed per food eaten.
+  speedupTicks: 1
+
+rewards:
+  win:
+    tokens: 10
+    money: 5.0
+    commands: []
+  lose:
+    tokens: 1
+    money: 0.0

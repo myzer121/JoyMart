@@ -1,0 +1,91 @@
+# 大富翁 (Monopoly) configuration
+# icon.material       : Material shown for this game in the JoyMart GUI
+# cost                : Economy cost to play (0 = free)
+# settings.startMoney : In-game starting money per player
+# settings.passGoBonus: Money collected when passing GO
+# settings.jailFee    : Fee to pay to leave jail
+# properties          : List of buyable properties (name, price, rent)
+#                       Admin can edit prices and rents here or via the
+#                       in-game settings editor GUI.
+
+icon:
+  material: GOLD_BLOCK
+
+cost: 0.0
+
+settings:
+  startMoney: 2000
+  passGoBonus: 200
+  jailFee: 50
+
+rewards:
+  winner:
+    tokens: 10
+    money: 0.0
+    commands: []
+  loser:
+    tokens: 2
+    money: 0.0
+    commands: []
+  draw:
+    tokens: 3
+    money: 0.0
+
+# 17 properties laid out around the 26-space board.
+# Board positions (clockwise from GO):
+#   0=GO, 8=Jail, 13=FreeParking, 19=GoToJail (corners)
+#   4,15,21=Chance  2,11=CommunityChest
+#   Properties occupy the remaining 17 positions:
+#   1,3,5,6,7,9,10,12,14,16,17,18,20,22,23,24,25
+properties:
+  - name: '&6老街'
+    price: 60
+    rent: 4
+  - name: '&6市政厅'
+    price: 80
+    rent: 6
+  - name: '&a公园大道'
+    price: 100
+    rent: 8
+  - name: '&a商业街'
+    price: 120
+    rent: 10
+  - name: '&e火车站'
+    price: 200
+    rent: 25
+  - name: '&a购物中心'
+    price: 160
+    rent: 14
+  - name: '&b金融街'
+    price: 180
+    rent: 16
+  - name: '&b科技园'
+    price: 200
+    rent: 18
+  - name: '&e机场'
+    price: 200
+    rent: 25
+  - name: '&b大学城'
+    price: 240
+    rent: 20
+  - name: '&c艺术区'
+    price: 260
+    rent: 22
+  - name: '&c夜市'
+    price: 280
+    rent: 24
+  - name: '&c海滩'
+    price: 300
+    rent: 26
+  - name: '&d别墅区'
+    price: 320
+    rent: 28
+  - name: '&d摩天大楼'
+    price: 400
+    rent: 50
+  - name: '&d港口'
+    price: 350
+    rent: 35
+  - name: '&6金矿'
+    price: 380
+    rent: 38

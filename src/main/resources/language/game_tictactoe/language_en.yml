@@ -1,0 +1,22 @@
+# Tic-Tac-Toe language file (English)
+# Keys are namespaced under games.tictactoe. by the framework.
+
+name: '&cTic-Tac-Toe'
+lore:
+  - '&7Classic three-in-a-row.'
+  - '&7Invite a friend and align three marks to win!'
+
+play: '&aPlay'
+invite: '&aInvite to Play'
+highscores: '&eHigh Scores'
+vsAi: '&bPlay vs AI'
+
+title: '&8&lTic-Tac-Toe'
+
+x: '&c&lX'
+o: '&9&lO'
+empty: '&7Empty'
+
+turn: '&eTurn: &f%player%'
+win: '&a%player% &ewins the game!'
+draw: '&eThe game ended in a draw!'

@@ -1,0 +1,28 @@
+# Bejeweled game configuration
+icon:
+  material: PURPLE_CONCRETE
+
+# Economy entry cost to play.
+cost: 0.0
+
+# Session inventory size (rows * 9). 6 rows -> 54.
+guiSize: 54
+
+# Tokens awarded = score / scorePerToken (0 disables score-based tokens).
+scorePerToken: 5
+
+rewards:
+  win:
+    tokens: 5
+    money: 0.0
+    commands: []
+  lose:
+    tokens: 0
+    money: 0.0
+
+settings:
+  # Grid dimensions (rows up to 6, cols up to 8).
+  rows: 6
+  cols: 8
+  # Number of swaps allowed before the game ends.
+  moveLimit: 20

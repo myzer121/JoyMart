@@ -1,0 +1,25 @@
+# Maze game configuration
+# Navigate from the top-left to the bottom-right goal in as few moves as
+# possible. Score = max(0, 1000 - moves*10). gridSize is capped at 6 (must fit
+# a 6-row inventory).
+
+icon:
+  material: END_PORTAL_FRAME
+
+cost: 0.0
+guiSize: 54
+scorePerToken: 0
+moneyPerToken: 0.0
+trackHighScore: true
+
+settings:
+  gridSize: 6
+
+rewards:
+  win:
+    tokens: 5
+    money: 0.0
+    commands: []
+  lose:
+    tokens: 0
+    money: 0.0

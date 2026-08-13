@@ -1,0 +1,30 @@
+# 石头剪刀布语言文件 (简体中文)
+# 键合并到 games.rockpaperscissors. 命名空间下
+
+name: '&9石头剪刀布'
+lore:
+  - '&7N 局制。'
+  - '&7邀请好友或对战 AI, 选择你的武器!'
+
+play: '&a开始游戏'
+invite: '&a邀请对战'
+highscores: '&e高分榜'
+vsAi: '&b对战 AI'
+
+title: '&8&l石头剪刀布'
+
+rock: '&f石头'
+paper: '&f布'
+scissors: '&f剪刀'
+clickToPick: '&7点击选择'
+
+round: '&e第 %round% / %bestOf% 局'
+score: '&7%player%: &f%score%'
+status: '&7%player%: %status%'
+ready: '&a已就绪'
+waiting: '&7等待中...'
+
+roundWin: '&a%player% &e赢了这一局!'
+tie: '&e本局平局! 重来。'
+win: '&a%player% &e赢得了比赛!'
+draw: '&e比赛平局!'

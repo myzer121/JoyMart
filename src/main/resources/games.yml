@@ -1,0 +1,53 @@
+# JoyMart games configuration
+# Each game can be enabled/disabled and configured with sub-commands.
+# Sub-commands let players start a game directly: /gamebox <subcommand>
+
+games:
+  # ===== Single player =====
+  2048:
+    enabled: true
+    subCommands: [2048, twentyfortyeight]
+  minesweeper:
+    enabled: true
+    subCommands: [minesweeper, ms]
+  whackamole:
+    enabled: true
+    subCommands: [whackamole, mole]
+  bejeweled:
+    enabled: true
+    subCommands: [bejeweled, gems]
+  lottery:
+    enabled: true
+    subCommands: [lottery, lt]
+  slotmachine:
+    enabled: true
+    subCommands: [slotmachine, slot]
+  maze:
+    enabled: true
+    subCommands: [maze]
+  snake:
+    enabled: true
+    subCommands: [snake, sn]
+  dinorun:
+    enabled: true
+    subCommands: [dinorun, dino]
+  chess:
+    enabled: true
+    subCommands: [chess, ch]
+  # ===== Two player =====
+  battleship:
+    enabled: true
+    subCommands: [battleship, ships]
+  connect4:
+    enabled: true
+    subCommands: [connect4, c4]
+  tictactoe:
+    enabled: true
+    subCommands: [tictactoe, ttt]
+  rockpaperscissors:
+    enabled: true
+    subCommands: [rps, rockpaperscissors]
+  # ===== Multi player =====
+  monopoly:
+    enabled: true
+    subCommands: [monopoly, mono]

@@ -1,0 +1,31 @@
+# Battleship configuration
+
+# Icon material shown in the JoyMart game menu (1.21 material name).
+icon:
+  material: IRON_BLOCK
+
+# Entry cost. The two-player invite flow does not charge a cost; this value is
+# only consulted for single-player flows (none here) and affordability checks.
+cost: 0.0
+
+# Rewards distributed after a game. Tokens use the internal JoyMart currency;
+# money requires Vault. Commands run as console with %player% replaced.
+rewards:
+  winner:
+    tokens: 5
+    money: 10.0
+    commands:
+      - "say %player% won a game of Battleship!"
+  loser:
+    tokens: 1
+    money: 0.0
+    commands: []
+  draw:
+    tokens: 2
+    money: 0.0
+
+settings:
+  # Number of columns of the ocean grid (max 7 to keep two info columns).
+  gridSize: 7
+  # Number of rows of the ocean grid (max 6 to fit a size-54 inventory).
+  gridRows: 6

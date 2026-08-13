@@ -1,0 +1,90 @@
+# JoyMart main configuration
+# Version 1.0
+
+# ---------------- Economy ----------------
+economy:
+  # Enable token system (internal currency stored per player)
+  tokens: true
+  # Hook into Vault for money rewards/costs (optional)
+  vault: true
+
+# ---------------- Storage ----------------
+storage:
+  # yaml = local files, mysql = database (HikariCP pool)
+  type: yaml
+  # Auto-save interval in seconds (0 = disabled, only save on quit)
+  autoSaveInterval: 120
+  mysql:
+    host: localhost
+    port: 3306
+    database: gamebox
+    user: root
+    password: ''
+    # Connection pool size
+    poolSize: 10
+    # Cross-server (BungeeCord) shared high scores
+    bungee: false
+
+# ---------------- Language ----------------
+language:
+  # en, zh, de, es (falls back to en)
+  default: en
+
+# ---------------- Lobby ----------------
+lobby:
+  # Worlds where players receive a hotbar item to open JoyMart
+  enabled: false
+  worlds:
+    - world
+    - world_nether
+  # Slot (0-8) for the hotbar item
+  slot: 4
+  # Item material and display name
+  material: NETHER_STAR
+  name: '&6&lJoyMart'
+  # Whether players can drop/move the lobby item
+  lockItem: true
+
+# ---------------- Invitations ----------------
+invitations:
+  # How long an invitation stays valid (seconds)
+  expiry: 30
+  # Notification style: json (chat), actionbar, title
+  style: json
+
+# ---------------- Navigation ----------------
+navigation:
+  # Main menu size (multiples of 9, max 54)
+  mainMenuSize: 45
+  # Slot of the back button in game guis (-1 = none)
+  backButtonSlot: 40
+  # Slot of the close button (-1 = none)
+  closeButtonSlot: 44
+
+# ---------------- Sounds ----------------
+sounds:
+  enabled: true
+  click: UI_BUTTON_CLICK
+  win: ENTITY_PLAYER_LEVELUP
+  lose: BLOCK_ANVIL_LAND
+  token: ENTITY_EXPERIENCE_ORB_PICKUP
+
+# ---------------- Scoreboard ----------------
+# Show a sidebar scoreboard while in a JoyMart game session.
+# Displays the current game, live score, high score, and token balance.
+scoreboard:
+  enabled: true
+
+# ---------------- Custom commands ----------------
+# Run when a player enters / leaves JoyMart
+commands:
+  onEnter: []
+  onLeave: []
+
+# ---------------- Shop ----------------
+# Master toggle for the token shop GUI.
+shop:
+  enabled: true
+
+# ---------------- bStats ----------------
+bstats: true

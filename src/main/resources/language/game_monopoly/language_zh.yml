@@ -1,0 +1,79 @@
+# 大富翁语言文件 (简体中文)
+# 键合并到 games.monopoly. 命名空间下
+
+name: '&6大富翁'
+lore:
+  - '&7买地收租, 让对手破产!'
+  - '&7最后一位富豪获胜!'
+  - '&7支持 2-3 人或对战 AI'
+
+play: '&a开始游戏'
+invite: '&a邀请对战 (2人)'
+invite2: '&a邀请对战 (2人)'
+invite3: '&b邀请对战 (3人)'
+vsAi: '&c对战 AI (2人)'
+highscores: '&e高分榜'
+
+title: '&8&l大富翁'
+
+# Board spaces
+go: '&a&lGO'
+jail: '&7&l监狱'
+freeParking: '&b&l免费停车'
+goToJail: '&c&l入狱!'
+chance: '&5机会'
+communityChest: '&3命运'
+
+# Actions
+rollDice: '&a掷骰子'
+buyProperty: '&a购买地产 &7(%price%元)'
+endTurn: '&e结束回合'
+payRent: '&c支付租金 &7(%rent%元)'
+cannotAfford: '&c余额不足!'
+propertyOwned: '&7已被 &f%owner% &7购买'
+propertyUnowned: '&7未购买 &7| 价格: &f%price% &7| 租金: &f%rent%'
+
+# Messages
+yourTurn: '&e轮到 &f%player% &e了!'
+rolled: '&f%player% &e掷出了 &f%dice% &e点, 前进 %dice% 格'
+landedOn: '&f%player% &e落在了 &f%space%'
+boughtProperty: '&f%player% &a购买了 &f%property% &a(-%price%元)'
+paidRent: '&f%player% &c向 &f%owner% &c支付了租金 &f%rent%元'
+passedGo: '&f%player% &a经过 GO, 获得 &f%bonus%元'
+wentToJail: '&f%player% &c被送进监狱!'
+bankrupt: '&f%player% &4破产了!'
+gameOver: '&6游戏结束! &f%player% &6是最后的富豪!'
+drawCard: '&f%player% &e抽到了一张卡: &f%card%'
+jailTurn: '&7你在监狱中. 支付 &f%fee%元 &7出狱或掷出对子.'
+paidJailFee: '&f%player% &7支付了 &f%fee%元 &7出狱费'
+jailStay: '&f%player% &7留在监狱中'
+
+# Player info
+balance: '&7余额: &f%amount%元'
+position: '&7位置: &f%pos%'
+properties: '&7地产: &f%count%栋'
+bankruptStatus: '&4已破产'
+
+# Buttons
+musicPlayer: '&6音乐播放器'
+musicLore: '&7点击打开音乐控制'
+forfeit: '&c放弃游戏'
+forfeitLore: '&7点击放弃当前游戏'
+
+# Chance cards
+chanceCards:
+  - '&e银行分红! 获得 &f150元'
+  - '&e维修费! 支付 &f80元'
+  - '&e生日快乐! 每位玩家送你 &f50元'
+  - '&e前进到 GO, 获得 &f200元'
+  - '&e直接入狱! 不经过 GO'
+  - '&e中了彩票! 获得 &f100元'
+
+# Community Chest cards
+chestCards:
+  - '&e继承遗产! 获得 &f100元'
+  - '&e医疗费! 支付 &f50元'
+  - '&e退税! 获得 &f20元'
+  - '&e前进到 GO, 获得 &f200元'
+  - '&e直接入狱! 不经过 GO'
+  - '&e学校学费! 支付 &f50元'

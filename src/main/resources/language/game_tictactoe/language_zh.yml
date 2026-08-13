@@ -1,0 +1,22 @@
+# 井字棋语言文件 (简体中文)
+# 键合并到 games.tictactoe. 命名空间下
+
+name: '&c井字棋'
+lore:
+  - '&7经典三子连线。'
+  - '&7邀请好友或对战 AI, 连成三子获胜!'
+
+play: '&a开始游戏'
+invite: '&a邀请对战'
+highscores: '&e高分榜'
+vsAi: '&b对战 AI'
+
+title: '&8&l井字棋'
+
+x: '&c&lX'
+o: '&9&lO'
+empty: '&7空位'
+
+turn: '&e回合: &f%player%'
+win: '&a%player% &e赢得了游戏!'
+draw: '&e游戏平局!'

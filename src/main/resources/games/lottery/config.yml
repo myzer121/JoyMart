@@ -1,0 +1,66 @@
+# Lottery game configuration
+# Players pick `pickCount` numbers from a pool of `poolSize`, then the game
+# draws `pickCount` winning numbers. The match count selects a prize tier:
+#   matches 0 -> prizes[0], matches 1 -> prizes[1], ... matches N -> prizes[N]
+# Admins can also edit the prize tiers in-game via the "Edit Prizes" button
+# (gamebox.admin.games permission) in the lottery's game menu.
+#
+# NOTE: The lottery only awards tokens — no items or money.
+
+icon:
+  material: SUNFLOWER
+
+cost: 0.0
+guiSize: 45
+scorePerToken: 0
+moneyPerToken: 0.0
+trackHighScore: true
+
+settings:
+  poolSize: 16
+  pickCount: 4
+
+rewards:
+  win:
+    tokens: 0
+    money: 0.0
+    commands: []
+  lose:
+    tokens: 0
+    money: 0.0
+
+# Prize tiers indexed by match count (0..pickCount).
+# weight is unused for the lottery (tiers are selected by matches, not random).
+# Only tokens are awarded — no money or item commands.
+# material/name are shown in the "Edit Prizes" GUI.
+prizes:
+  - material: COAL
+    name: '&8安慰奖 (0 中)'
+    weight: 0
+    tokens: 0
+    money: 0.0
+    commands: []
+  - material: IRON_INGOT
+    name: '&f小奖 (1 中)'
+    weight: 0
+    tokens: 1
+    money: 0.0
+    commands: []
+  - material: GOLD_INGOT
+    name: '&e中奖 (2 中)'
+    weight: 0
+    tokens: 5
+    money: 0.0
+    commands: []
+  - material: DIAMOND
+    name: '&b大奖 (3 中)'
+    weight: 0
+    tokens: 20
+    money: 0.0
+    commands: []
+  - material: NETHER_STAR
+    name: '&6头奖 (4 中全中!)'
+    weight: 0
+    tokens: 100
+    money: 0.0
+    commands: []

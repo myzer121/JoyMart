@@ -1,0 +1,27 @@
+# Whack-a-Mole game configuration
+icon:
+  material: BROWN_CONCRETE
+
+# Economy entry cost to play.
+cost: 0.0
+
+# Menu GUI size (must be a multiple of 9, 9..54).
+guiSize: 27
+
+# Tokens awarded = score / scorePerToken (0 disables score-based tokens).
+scorePerToken: 2
+
+rewards:
+  win:
+    tokens: 5
+    money: 0.0
+    commands: []
+  lose:
+    tokens: 0
+    money: 0.0
+
+settings:
+  # Length of a round in seconds.
+  durationSeconds: 30
+  # Ticks between mole pop-ups (20 ticks = 1 second).
+  popIntervalTicks: 20

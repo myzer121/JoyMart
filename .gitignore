@@ -1,0 +1,30 @@
+# Maven build output
+target/
+build/
+libs/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# GameBox runtime data (do not commit generated player/server data)
+data/players/
+data/scores/
+
+# Local Maven settings (sandbox/proxy-specific; do not commit)
+settings.xml
+.mvn-settings.xml
+.mvn-settings.xml.bak

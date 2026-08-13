@@ -1,0 +1,18 @@
+# 打地鼠语言文件 (简体中文)
+name: '&c打地鼠'
+lore:
+  - '&7在地鼠躲起来前打中它们!'
+play: '开始游戏'
+invite: '邀请好友'
+highscores: '高分榜'
+vsAi: '&b对战 AI'
+title: '&c&l打地鼠'
+moleName: '&6&l地鼠'
+moleLore:
+  - '&a点击打它!'
+holeName: '&8空洞'
+holeLore:
+  - '&7等待地鼠出现...'
+infoName: '&e打地鼠'
+infoScore: '&f分数: &e%score%'
+infoTime: '&f时间: &e%time%秒'

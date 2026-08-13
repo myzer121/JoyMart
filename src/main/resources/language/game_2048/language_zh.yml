@@ -1,0 +1,31 @@
+# 2048 语言文件 (简体中文)
+# 这些键由框架合并到 'games.2048.*' 命名空间下。
+
+name: '&a2048'
+lore:
+  - '&7滑动方块达到 2048!'
+  - '&7合并相同的数字来得分。'
+
+play: '&a开始游戏'
+invite: '&7邀请好友'
+highscores: '&e高分榜'
+vsAi: '&b对战 AI'
+
+title: '&8&l2048'
+
+buttons:
+  up: '上'
+  down: '下'
+  left: '左'
+  right: '右'
+  restart: '重新开始'
+  upHint: '向上滑动方块'
+  downHint: '向下滑动方块'
+  leftHint: '向左滑动方块'
+  rightHint: '向右滑动方块'
+  restartHint: '开始新游戏'
+
+labels:
+  score: '分数'
+  target: '目标'
+  reached: '达到 2048!'

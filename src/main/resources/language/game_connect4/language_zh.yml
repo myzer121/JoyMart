@@ -1,0 +1,28 @@
+# 四子棋语言文件 (简体中文)
+# 键合并到 games.connect4.<key> 命名空间下
+
+name: '&6四子棋'
+lore:
+  - '&7连成四子!'
+  - '&7将棋子放入列中。'
+play: '开始游戏'
+invite: '邀请对战'
+highscores: '高分榜'
+vsAi: '&b对战 AI'
+title: '&8&l四子棋'
+
+items:
+  empty: '&7空位'
+  red: '&c红棋'
+  yellow: '&e黄棋'
+
+info:
+  turn: '&e回合: &f%player%'
+  legend: '&7点击一列放入棋子'
+
+messages:
+  turn: '&e%player% 的回合 &7- 放入棋子!'
+  notYourTurn: '&c现在不是你的回合!'
+  columnFull: '&c该列已满!'
+  win: '&a%player% &7连成四子获胜!'
+  draw: '&7棋盘已满 - &e平局!'

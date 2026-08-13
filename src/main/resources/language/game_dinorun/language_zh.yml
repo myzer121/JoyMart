@@ -1,0 +1,35 @@
+# 小恐龙快跑语言文件 (简体中文)
+# 这些键由框架合并到 'games.dinorun.*' 命名空间下。
+
+name: '&a小恐龙快跑'
+lore:
+  - '&7跳过仙人掌, 看你能撑多久!'
+  - '&7类似 Chrome 离线小恐龙游戏。'
+
+play: '&a开始游戏'
+invite: '&7邀请好友'
+highscores: '&e高分榜'
+vsAi: '&b对战 AI'
+
+title: '&8&l小恐龙快跑'
+
+buttons:
+  jump: '跳跃'
+  restart: '重新开始'
+  pause: '暂停'
+  resume: '继续'
+  jumpHint: '跳过仙人掌'
+  restartHint: '开始新一局'
+  pauseHint: '暂停游戏'
+  resumeHint: '继续游戏'
+
+labels:
+  score: '分数'
+  cleared: '已越过仙人掌'
+  speed: '速度'
+  paused: '已暂停'
+  gameOver: '游戏结束'
+  dino: '恐龙'
+  dinoHint: '就是你! 跳起来躲避仙人掌'
+  cactus: '仙人掌'
+  cactusHint: '别撞上去!'

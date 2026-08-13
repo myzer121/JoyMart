@@ -1,0 +1,28 @@
+# Connect 4 configuration
+
+# Icon material shown in the JoyMart game menu (1.21 material name).
+icon:
+  material: YELLOW_CONCRETE
+
+# Entry cost. The two-player invite flow does not charge a cost.
+cost: 0.0
+
+# Rewards distributed after a game.
+rewards:
+  winner:
+    tokens: 5
+    money: 10.0
+    commands:
+      - "say %player% won a game of Connect 4!"
+  loser:
+    tokens: 1
+    money: 0.0
+    commands: []
+  draw:
+    tokens: 2
+    money: 0.0
+
+settings:
+  # Board dimensions (cols max 7, rows max 6 to fit a size-54 inventory).
+  cols: 7
+  rows: 6

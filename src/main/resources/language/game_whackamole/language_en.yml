@@ -1,0 +1,17 @@
+# Whack-a-Mole language file (English)
+name: '&cWhack-a-Mole'
+lore:
+  - '&7Hit the moles before they hide!'
+play: 'Play'
+invite: 'Invite'
+highscores: 'High Scores'
+title: '&c&lWhack-a-Mole'
+moleName: '&6&lMole'
+moleLore:
+  - '&aClick to whack it!'
+holeName: '&8Empty Hole'
+holeLore:
+  - '&7Wait for a mole to appear...'
+infoName: '&eWhack-a-Mole'
+infoScore: '&fScore: &e%score%'
+infoTime: '&fTime: &e%time%s'

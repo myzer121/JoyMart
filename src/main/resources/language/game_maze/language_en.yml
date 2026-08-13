@@ -1,0 +1,12 @@
+name: '&aMaze'
+lore:
+  - '&7Find the exit in as few moves as possible!'
+play: '&aPlay'
+highscores: '&eHigh Scores'
+title: '&8&lMaze'
+goal: 'Goal'
+goalHint: '&7Reach this cell to win'
+you: 'You'
+moves: '&7Moves: &f%m%'
+moveHint: '&7Click an adjacent open cell to move'
+winMessage: '&aYou escaped the maze in &e%m%&a moves! Score: &e%s%'
