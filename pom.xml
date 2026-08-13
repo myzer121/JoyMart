@@ -10,12 +10,12 @@
     <packaging>jar</packaging>
 
     <name>JoyMart</name>
-    <description>A game lobby plugin for Spigot/Paper 1.21 - 1.21.6</description>
+    <description>A game lobby plugin for Spigot/Paper 1.20.1+</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <repositories>
@@ -34,11 +34,11 @@
     </repositories>
 
     <dependencies>
-        <!-- Provided: Paper API (covers Spigot 1.21+) -->
+        <!-- Provided: Paper API (covers Spigot/Paper 1.20.1+, backward compatible) -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.1-R0.1-SNAPSHOT</version>
+            <version>1.20.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <!-- Provided: Vault -->
@@ -116,8 +116,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
             <plugin>

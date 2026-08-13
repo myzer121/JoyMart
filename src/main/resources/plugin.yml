@@ -1,7 +1,7 @@
 name: JoyMart
 version: ${project.version}
 main: me.nikl.gamebox.GameBox
-api-version: '1.21'
+api-version: '1.20'
 author: nikl
 description: A game lobby plugin with built-in games.
 softdepend: [Vault, PlaceholderAPI, CalendarEvents]

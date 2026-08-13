@@ -2,11 +2,11 @@
 
 [![中文](https://img.shields.io/badge/%E8%AF%AD%E8%A8%80-%E4%B8%AD%E6%96%87-red?style=for-the-badge)](./README.md)
 [![English](https://img.shields.io/badge/Lang-English-blue?style=for-the-badge)](./README_EN.md)
-[![Spigot](https://img.shields.io/badge/Paper-1.21~1.21.6-orange?style=for-the-badge)](https://papermc.io/)
-[![Java](https://img.shields.io/badge/Java-21%2B-blue?style=for-the-badge)](https://adoptium.net/)
+[![Spigot](https://img.shields.io/badge/Paper-1.20.1%2B-orange?style=for-the-badge)](https://papermc.io/)
+[![Java](https://img.shields.io/badge/Java-17%2B-blue?style=for-the-badge)](https://adoptium.net/)
 [![License](https://img.shields.io/badge/License-MIT-informational?style=for-the-badge)](./LICENSE)
 
-A fully GUI-driven Minecraft mini-game lobby plugin built for **Spigot / Paper 1.21 – 1.21.6**. All 15 games are bundled inside the main jar — no extra modules needed. Drop it into `plugins/` and you're ready to play.
+A fully GUI-driven Minecraft mini-game lobby plugin built for **Spigot / Paper 1.20.1+**. All 15 games are bundled inside the main jar — no extra modules needed. Drop it into `plugins/` and you're ready to play.
 
 > Main class: `me.nikl.gamebox.GameBox` · Version: `1.0` · Build: Maven shade (dependencies relocated to `me.nikl.gamebox.common.*`)
 
@@ -49,7 +49,7 @@ In terms of product shape, gameplay concepts, and user experience, this project 
 
 ### Option A: Build from source (recommended)
 
-Requires **JDK 21+** and **Maven 3.6+**:
+Requires **JDK 17+** and **Maven 3.6+**:
 
 ```bash
 git clone https://github.com/myzer121/JoyMart.git
@@ -65,8 +65,8 @@ If you have a release `JoyMart-1.0.jar`, just drop it into your server's `plugin
 
 ### Server Requirements
 
-- **Paper / Spigot 1.21 – 1.21.6** (Paper recommended)
-- **Java 21+**
+- **Paper / Spigot 1.20.1+** (Paper recommended)
+- **Java 17+**
 - Optional: [Vault](https://www.spigotmc.org/resources/vault.34315/) + any economy plugin
 - Optional: [PlaceholderAPI](https://github.com/HelpChat/PlaceholderAPI)
 - Optional: [CalendarEvents](https://github.com/niklasstern/CalendarEvents) (seasonal easter eggs)

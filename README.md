@@ -2,11 +2,11 @@
 
 [![中文](https://img.shields.io/badge/%E8%AF%AD%E8%A8%80-%E4%B8%AD%E6%96%87-red?style=for-the-badge)](./README.md)
 [![English](https://img.shields.io/badge/Lang-English-blue?style=for-the-badge)](./README_EN.md)
-[![Spigot](https://img.shields.io/badge/Paper-1.21~1.21.6-orange?style=for-the-badge)](https://papermc.io/)
-[![Java](https://img.shields.io/badge/Java-21%2B-blue?style=for-the-badge)](https://adoptium.net/)
+[![Spigot](https://img.shields.io/badge/Paper-1.20.1%2B-orange?style=for-the-badge)](https://papermc.io/)
+[![Java](https://img.shields.io/badge/Java-17%2B-blue?style=for-the-badge)](https://adoptium.net/)
 [![License](https://img.shields.io/badge/License-MIT-informational?style=for-the-badge)](./LICENSE)
 
-一个为 **Spigot / Paper 1.21 – 1.21.6** 打造的全 GUI 我的世界小游戏大厅插件。15 款游戏全部内置在主 jar 中，无需额外模块加载，丢进 `plugins/` 即开箱即玩。
+一个为 **Spigot / Paper 1.20.1+** 打造的全 GUI 我的世界小游戏大厅插件。15 款游戏全部内置在主 jar 中，无需额外模块加载，丢进 `plugins/` 即开箱即玩。
 
 > 主类：`me.nikl.gamebox.GameBox` · 版本：`1.0` · 构建：Maven shade（依赖重定位至 `me.nikl.gamebox.common.*`）
 
@@ -49,7 +49,7 @@ JoyMart 的设计与实现由作者**完全独立自研**，代码、游戏逻�
 
 ### 方式 A：自行构建（推荐）
 
-需要 **JDK 21+** 和 **Maven 3.6+**：
+需要 **JDK 17+** 和 **Maven 3.6+**：
 
 ```bash
 git clone https://github.com/myzer121/JoyMart.git
@@ -65,8 +65,8 @@ mvn clean package
 
 ### 服务器要求
 
-- **Paper / Spigot 1.21 – 1.21.6**（Paper 推荐）
-- **Java 21+**
+- **Paper / Spigot 1.20.1+**（Paper 推荐）
+- **Java 17+**
 - 可选：[Vault](https://www.spigotmc.org/resources/vault.34315/) + 任意经济插件
 - 可选：[PlaceholderAPI](https://github.com/HelpChat/PlaceholderAPI)
 - 可选：[CalendarEvents](https://github.com/niklasstern/CalendarEvents)（节日彩蛋）
