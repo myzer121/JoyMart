@@ -205,14 +205,18 @@ public class LanguageManager {
     public String getPlayerLanguage(Player player) {
         if (player == null) return defaultLang;
         UUID uuid = player.getUniqueId();
-        String lang = playerLanguages.get(uuid);
-        if (lang != null) return lang;
         // Auto-detect if enabled
         if (GameBoxSettings.autoDetectLanguage) {
+            String lang = playerLanguages.get(uuid);
+            if (lang != null) return lang;
             lang = detectLanguage(player);
             playerLanguages.put(uuid, lang);
             return lang;
         }
+        // When autoDetect is false, always use the configured default language.
+        // This ensures the admin's language.default setting is respected even
+        // if a player's language was previously stored from an earlier session
+        // where autoDetect was true.
         return defaultLang;
     }
 

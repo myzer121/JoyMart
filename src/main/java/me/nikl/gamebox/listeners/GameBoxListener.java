@@ -151,9 +151,16 @@ public class GameBoxListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        // Auto-detect the player's language from their client locale
-        plugin.getLanguageManager().setPlayerLanguage(player.getUniqueId(),
-                plugin.getLanguageManager().detectLanguage(player));
+        // Only auto-detect language from client locale when autoDetect is enabled.
+        // When autoDetect is false, players use the configured default language
+        // (language.default in config.yml). Previously this was called
+        // unconditionally, which overrode the server's default language setting
+        // with each player's client locale — causing Chinese to never load even
+        // when the admin explicitly set language.default: zh.
+        if (me.nikl.gamebox.GameBoxSettings.autoDetectLanguage) {
+            plugin.getLanguageManager().setPlayerLanguage(player.getUniqueId(),
+                    plugin.getLanguageManager().detectLanguage(player));
+        }
         plugin.getPluginManager().loadOnJoin(player);
         Bukkit.getScheduler().runTaskLater(plugin, () ->
                 plugin.getPluginManager().giveLobbyItem(player), 5L);

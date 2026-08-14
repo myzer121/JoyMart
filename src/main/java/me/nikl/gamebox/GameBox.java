@@ -106,6 +106,11 @@ public class GameBox extends JavaPlugin {
             loadShopConfig();
             GameBoxSettings.load(getConfig(), languageManager);
             languageManager.reload();
+            // Re-read PREFIX after language reload so it uses the correct
+            // language cache (GameBoxSettings.load sets PREFIX before
+            // languageManager.reload() updates the active language).
+            GameBoxSettings.PREFIX = org.bukkit.ChatColor
+                    .translateAlternateColorCodes('&', languageManager.get("prefix"));
         } catch (Exception e) {
             getLogger().severe("Error loading configuration: " + e.getMessage());
             e.printStackTrace();
