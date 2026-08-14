@@ -152,8 +152,8 @@ public class PluginManager {
 
         // Title
         player.sendTitle(
-                me.nikl.gamebox.utility.Utility.color(plugin.lang("titles.enter")),
-                me.nikl.gamebox.utility.Utility.color(plugin.lang("titles.enterSubtitle")),
+                me.nikl.gamebox.utility.Utility.color(plugin.lang(player, "titles.enter")),
+                me.nikl.gamebox.utility.Utility.color(plugin.lang(player, "titles.enterSubtitle")),
                 10, 40, 10);
     }
 
@@ -333,15 +333,15 @@ public class PluginManager {
     public void playWinEffects(Player player) {
         playSound(player, GameBoxSettings.soundWin);
         player.sendTitle(
-                me.nikl.gamebox.utility.Utility.color(plugin.lang("titles.win")),
-                me.nikl.gamebox.utility.Utility.color(plugin.lang("titles.winSubtitle")),
+                me.nikl.gamebox.utility.Utility.color(plugin.lang(player, "titles.win")),
+                me.nikl.gamebox.utility.Utility.color(plugin.lang(player, "titles.winSubtitle")),
                 10, 50, 10);
     }
     public void playLoseEffects(Player player) {
         playSound(player, GameBoxSettings.soundLose);
         player.sendTitle(
-                me.nikl.gamebox.utility.Utility.color(plugin.lang("titles.lose")),
-                me.nikl.gamebox.utility.Utility.color(plugin.lang("titles.loseSubtitle")),
+                me.nikl.gamebox.utility.Utility.color(plugin.lang(player, "titles.lose")),
+                me.nikl.gamebox.utility.Utility.color(plugin.lang(player, "titles.loseSubtitle")),
                 10, 50, 10);
     }
 

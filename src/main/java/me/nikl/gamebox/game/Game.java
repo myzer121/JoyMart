@@ -298,12 +298,12 @@ public abstract class Game {
                 if (gbWinner != null) {
                     gbWinner.addTokens(pot);
                     if (winnerPlayer != null) {
-                        winnerPlayer.sendMessage(plugin.langPrefixed("messages.betWon")
+                        winnerPlayer.sendMessage(plugin.langPrefixed(winnerPlayer, "messages.betWon")
                                 .replace("%tokens%", String.valueOf(pot)));
                     }
                 }
                 if (loserPlayer != null) {
-                    loserPlayer.sendMessage(plugin.langPrefixed("messages.betLost")
+                    loserPlayer.sendMessage(plugin.langPrefixed(loserPlayer, "messages.betLost")
                             .replace("%tokens%", String.valueOf(loserBet)));
                 }
             }
@@ -413,7 +413,7 @@ public abstract class Game {
                     gb.addTokens(bet);
                     Player p = Bukkit.getPlayer(id);
                     if (p != null) {
-                        p.sendMessage(plugin.langPrefixed("messages.betRefunded")
+                        p.sendMessage(plugin.langPrefixed(p, "messages.betRefunded")
                                 .replace("%tokens%", String.valueOf(bet)));
                     }
                 }

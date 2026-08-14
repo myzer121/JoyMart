@@ -61,9 +61,21 @@ public abstract class AbstractGameSession implements InventoryHolder {
 
     /** Open the session for all players and render the first frame. */
     public void start() {
-        this.inventory = Bukkit.createInventory(this, getInventorySize(),
-                me.nikl.gamebox.utility.Utility.color(getInventoryTitle()));
-        build();
+        // Set active language to the first player's language so all lang()
+        // calls during build() use the correct language. Without this, the
+        // active language defaults to the server default (often "en"), causing
+        // game sessions to display English even when the player switched to
+        // Chinese or another language.
+        if (!players.isEmpty()) {
+            plugin.getLanguageManager().setActiveLanguage(players.get(0));
+        }
+        try {
+            this.inventory = Bukkit.createInventory(this, getInventorySize(),
+                    me.nikl.gamebox.utility.Utility.color(getInventoryTitle()));
+            build();
+        } finally {
+            plugin.getLanguageManager().resetActiveLanguage();
+        }
         for (Player p : players) {
             p.openInventory(inventory);
         }
@@ -71,7 +83,17 @@ public abstract class AbstractGameSession implements InventoryHolder {
 
     /** Re-render and refresh the open inventory for all players. */
     public void refresh() {
-        build();
+        // Set active language for the same reason as start() — refresh() is
+        // called from timer ticks and click handlers where activeLang would
+        // otherwise be the default language, not the player's language.
+        if (!players.isEmpty()) {
+            plugin.getLanguageManager().setActiveLanguage(players.get(0));
+        }
+        try {
+            build();
+        } finally {
+            plugin.getLanguageManager().resetActiveLanguage();
+        }
         for (Player p : players) {
             if (p.getOpenInventory().getTopInventory().getHolder() == this) {
                 p.getOpenInventory().getTopInventory().setContents(inventory.getContents());

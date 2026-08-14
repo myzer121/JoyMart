@@ -117,8 +117,8 @@ public class MusicPlayer {
         st.currentTick = 0;
         st.playing = true;
         startPlaybackTask(player, song, true);
-        player.sendMessage(Utility.color(plugin.lang("prefix")
-                + plugin.lang("messages.musicNowPlayingMsg").replace("%name%", song.name)
+        player.sendMessage(Utility.color(plugin.lang(player, "prefix")
+                + plugin.lang(player, "messages.musicNowPlayingMsg").replace("%name%", song.name)
                 + (song.author != null && !song.author.isEmpty()
                         ? " &7by " + song.author : "")));
     }
@@ -149,13 +149,13 @@ public class MusicPlayer {
         if (st.playing) {
             st.playing = false;
             cancelTask(player);
-            player.sendMessage(Utility.color(plugin.lang("prefix") + plugin.lang("messages.musicPausedMsg")));
+            player.sendMessage(Utility.color(plugin.lang(player, "prefix") + plugin.lang(player, "messages.musicPausedMsg")));
         } else {
             st.playing = true;
             if (st.currentIndex >= 0 && st.currentIndex < songs.size()) {
                 // Resume from the paused position — do NOT reset currentTick.
                 startPlaybackTask(player, songs.get(st.currentIndex), false);
-                player.sendMessage(Utility.color(plugin.lang("prefix") + plugin.lang("messages.musicResumedMsg")));
+                player.sendMessage(Utility.color(plugin.lang(player, "prefix") + plugin.lang(player, "messages.musicResumedMsg")));
             }
         }
     }

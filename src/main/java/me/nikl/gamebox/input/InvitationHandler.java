@@ -43,7 +43,7 @@ public class InvitationHandler {
                     Player inviter = Bukkit.getPlayer(invitation.inviter);
                     Player targetP = Bukkit.getPlayer(target);
                     if (inviter != null) {
-                        inviter.sendMessage(plugin.langPrefixed("invitations.expired")
+                        inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.expired")
                                 .replace("%player%", targetP != null ? targetP.getName() : "?"));
                     }
                 })
@@ -70,7 +70,7 @@ public class InvitationHandler {
         lastInvitedGame.put(inviter.getUniqueId(), gameId);
         lastInvitedBet.put(inviter.getUniqueId(), bet);
         inputHandler.awaitInput(inviter.getUniqueId());
-        inviter.sendMessage(plugin.langPrefixed("invitations.timeoutPrompt"));
+        inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.timeoutPrompt"));
     }
 
     /**
@@ -88,26 +88,26 @@ public class InvitationHandler {
     public boolean sendInvitationTo(Player inviter, Player target, String gameId, int bet) {
         Game game = plugin.getGameRegistry().getGame(gameId);
         if (game == null) {
-            inviter.sendMessage(plugin.langPrefixed("messages.gameNotFound"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "messages.gameNotFound"));
             return false;
         }
         if (inviter.getUniqueId().equals(target.getUniqueId())) {
-            inviter.sendMessage(plugin.langPrefixed("invitations.selfInvite"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.selfInvite"));
             return false;
         }
         if (isInAnyGame(target.getUniqueId())) {
-            inviter.sendMessage(plugin.langPrefixed("invitations.busy"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.busy"));
             return false;
         }
         if (pending.containsKey(target.getUniqueId())) {
-            inviter.sendMessage(plugin.langPrefixed("invitations.alreadyPending"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.alreadyPending"));
             return false;
         }
         // Escrow the inviter's bet up front (refunded on expire/decline).
         if (bet > 0) {
             me.nikl.gamebox.data.GBPlayer gbInviter = plugin.getPluginManager().getPlayer(inviter.getUniqueId());
             if (gbInviter == null || !gbInviter.removeTokens(bet)) {
-                inviter.sendMessage(plugin.langPrefixed("messages.notEnoughTokens")
+                inviter.sendMessage(plugin.langPrefixed(inviter, "messages.notEnoughTokens")
                         .replace("%tokens%", String.valueOf(bet))
                         .replace("%balance%", gbInviter != null ? String.valueOf(gbInviter.getTokens()) : "0"));
                 return false;
@@ -116,7 +116,7 @@ public class InvitationHandler {
         Invitation invitation = new Invitation(inviter.getUniqueId(), target.getUniqueId(), gameId, bet);
         pending.put(target.getUniqueId(), invitation);
         sendInvitation(inviter, target, game);
-        inviter.sendMessage(plugin.langPrefixed("invitations.sent").replace("%player%", target.getName()));
+        inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.sent").replace("%player%", target.getName()));
         return true;
     }
 
@@ -125,18 +125,18 @@ public class InvitationHandler {
         inviting.remove(inviter.getUniqueId());
         Game game = resolveGameForInviter(inviter);
         if (game == null) {
-            inviter.sendMessage(plugin.langPrefixed("messages.gameNotFound"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "messages.gameNotFound"));
             return;
         }
 
         if (inviter.getName().equalsIgnoreCase(targetName)) {
-            inviter.sendMessage(plugin.langPrefixed("invitations.selfInvite"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.selfInvite"));
             return;
         }
 
         Player target = Bukkit.getPlayerExact(targetName);
         if (target == null) {
-            inviter.sendMessage(plugin.langPrefixed("messages.notOnline"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "messages.notOnline"));
             return;
         }
 
@@ -145,12 +145,12 @@ public class InvitationHandler {
             // allow inviting players already in lobby; but if they're mid-session, mark busy
         }
         if (isInAnyGame(target.getUniqueId())) {
-            inviter.sendMessage(plugin.langPrefixed("invitations.busy"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.busy"));
             return;
         }
 
         if (pending.containsKey(target.getUniqueId())) {
-            inviter.sendMessage(plugin.langPrefixed("invitations.alreadyPending"));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.alreadyPending"));
             return;
         }
 
@@ -160,7 +160,7 @@ public class InvitationHandler {
         if (bet > 0) {
             me.nikl.gamebox.data.GBPlayer gbInviter = plugin.getPluginManager().getPlayer(inviter.getUniqueId());
             if (gbInviter == null || !gbInviter.removeTokens(bet)) {
-                inviter.sendMessage(plugin.langPrefixed("messages.notEnoughTokens")
+                inviter.sendMessage(plugin.langPrefixed(inviter, "messages.notEnoughTokens")
                         .replace("%tokens%", String.valueOf(bet))
                         .replace("%balance%", gbInviter != null ? String.valueOf(gbInviter.getTokens()) : "0"));
                 return;
@@ -170,7 +170,7 @@ public class InvitationHandler {
         Invitation invitation = new Invitation(inviter.getUniqueId(), target.getUniqueId(), game.getGameId(), bet);
         pending.put(target.getUniqueId(), invitation);
         sendInvitation(inviter, target, game);
-        inviter.sendMessage(plugin.langPrefixed("invitations.sent").replace("%player%", target.getName()));
+        inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.sent").replace("%player%", target.getName()));
     }
 
     private Game resolveGameForInviter(Player inviter) {
@@ -203,42 +203,42 @@ public class InvitationHandler {
     private void sendInvitation(Player inviter, Player target, Game game) {
         Invitation invitation = pending.get(target.getUniqueId());
         int bet = invitation != null ? invitation.bet : 0;
-        String base = plugin.lang("invitations.received")
+        String base = plugin.lang(target, "invitations.received")
                 .replace("%player%", inviter.getName())
-                .replace("%game%", game.lang("name"));
+                .replace("%game%", game.lang(target, "name"));
         if (bet > 0) {
-            base += " " + plugin.lang("invitations.betInfo").replace("%bet%", String.valueOf(bet));
+            base += " " + plugin.lang(target, "invitations.betInfo").replace("%bet%", String.valueOf(bet));
         }
 
         switch (GameBoxSettings.inviteStyle.toLowerCase()) {
             case "actionbar":
                 target.spigot().sendMessage(net.md_5.bungee.api.ChatMessageType.ACTION_BAR,
                         new TextComponent(me.nikl.gamebox.utility.Utility.color(base
-                                + " " + plugin.lang("invitations.accept") + " /gamebox accept")));
+                                + " " + plugin.lang(target, "invitations.accept") + " /gamebox accept")));
                 break;
             case "title":
                 target.sendTitle(me.nikl.gamebox.utility.Utility.color(base),
-                        me.nikl.gamebox.utility.Utility.color(plugin.lang("invitations.acceptHover")), 10, 60, 10);
+                        me.nikl.gamebox.utility.Utility.color(plugin.lang(target, "invitations.acceptHover")), 10, 60, 10);
                 break;
             case "json":
             default:
                 TextComponent msg = new TextComponent(
                         me.nikl.gamebox.utility.Utility.color(base + " "));
                 TextComponent accept = new TextComponent(
-                        me.nikl.gamebox.utility.Utility.color(plugin.lang("invitations.accept")));
+                        me.nikl.gamebox.utility.Utility.color(plugin.lang(target, "invitations.accept")));
                 accept.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
                         "/gamebox accept " + inviter.getUniqueId()));
                 accept.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                         new ComponentBuilder(me.nikl.gamebox.utility.Utility.color(
-                                plugin.lang("invitations.acceptHover"))).create()));
+                                plugin.lang(target, "invitations.acceptHover"))).create()));
                 TextComponent sep = new TextComponent(" ");
                 TextComponent decline = new TextComponent(
-                        me.nikl.gamebox.utility.Utility.color(plugin.lang("invitations.decline")));
+                        me.nikl.gamebox.utility.Utility.color(plugin.lang(target, "invitations.decline")));
                 decline.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,
                         "/gamebox decline " + inviter.getUniqueId()));
                 decline.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                         new ComponentBuilder(me.nikl.gamebox.utility.Utility.color(
-                                plugin.lang("invitations.declineHover"))).create()));
+                                plugin.lang(target, "invitations.declineHover"))).create()));
                 msg.addExtra(accept);
                 msg.addExtra(sep);
                 msg.addExtra(decline);
@@ -251,7 +251,7 @@ public class InvitationHandler {
     public boolean accept(Player target, UUID inviterUuid) {
         Invitation invitation = pending.get(target.getUniqueId());
         if (invitation == null || !invitation.inviter.equals(inviterUuid)) {
-            target.sendMessage(plugin.langPrefixed("invitations.targetExpired")
+            target.sendMessage(plugin.langPrefixed(target, "invitations.targetExpired")
                     .replace("%player%", "?"));
             return false;
         }
@@ -261,7 +261,7 @@ public class InvitationHandler {
         if (inviter == null) {
             // Refund inviter's bet since they're offline
             refundBet(invitation);
-            target.sendMessage(plugin.langPrefixed("messages.notOnline"));
+            target.sendMessage(plugin.langPrefixed(target, "messages.notOnline"));
             return false;
         }
 
@@ -271,15 +271,15 @@ public class InvitationHandler {
             me.nikl.gamebox.data.GBPlayer gbTarget = plugin.getPluginManager().getPlayer(target.getUniqueId());
             if (gbTarget == null || !gbTarget.removeTokens(invitation.bet)) {
                 refundBet(invitation);
-                target.sendMessage(plugin.langPrefixed("messages.notEnoughTokens")
+                target.sendMessage(plugin.langPrefixed(target, "messages.notEnoughTokens")
                         .replace("%tokens%", String.valueOf(invitation.bet))
                         .replace("%balance%", gbTarget != null ? String.valueOf(gbTarget.getTokens()) : "0"));
-                inviter.sendMessage(plugin.langPrefixed("invitations.declined").replace("%player%", target.getName()));
+                inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.declined").replace("%player%", target.getName()));
                 return false;
             }
         }
 
-        inviter.sendMessage(plugin.langPrefixed("invitations.accepted").replace("%player%", target.getName()));
+        inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.accepted").replace("%player%", target.getName()));
 
         Game game = plugin.getGameRegistry().getGame(invitation.gameId);
         if (game == null) {
@@ -287,7 +287,7 @@ public class InvitationHandler {
             refundBet(invitation);
             me.nikl.gamebox.data.GBPlayer gbTarget = plugin.getPluginManager().getPlayer(target.getUniqueId());
             if (gbTarget != null && invitation.bet > 0) gbTarget.addTokens(invitation.bet);
-            target.sendMessage(plugin.langPrefixed("messages.gameDisabled"));
+            target.sendMessage(plugin.langPrefixed(target, "messages.gameDisabled"));
             return false;
         }
 
@@ -317,7 +317,7 @@ public class InvitationHandler {
         refundBet(invitation);
         Player inviter = Bukkit.getPlayer(inviterUuid);
         if (inviter != null) {
-            inviter.sendMessage(plugin.langPrefixed("invitations.declined").replace("%player%", target.getName()));
+            inviter.sendMessage(plugin.langPrefixed(inviter, "invitations.declined").replace("%player%", target.getName()));
         }
         return true;
     }
